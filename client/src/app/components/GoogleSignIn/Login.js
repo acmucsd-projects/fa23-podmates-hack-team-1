@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GoogleLogin, googleLogout, useGoogleOneTapLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
-import Profile from './Profile';
-import { redirect } from "react-router-dom";
-import ManageUser from '../ManageUser';
-var logedIn = false; 
+import ManageUser from '../ManageUser'; 
 
 function decodeJwtResponse(response){
     return jwtDecode(JSON.stringify(response));
@@ -20,7 +17,6 @@ function Login(){
     const [user,setUser] = useState(null);
     const responseMessage = (response) => {
       const text = decodeJwtResponse(response);
-      logedIn = true;
       setUser({'email':text.email, 'firstName': text.given_name,'lastName': text.family_name,'defaultPic': text.picture})
       console.log(text);
   };
