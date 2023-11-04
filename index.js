@@ -9,7 +9,7 @@ server.use(cors());
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
-server.use('/api' router); 
+server.use('/api', router); 
 
 //remember to download mongoose! type into terminal: npm install mongoose
 mongoose.connect(config.databaseUrl, { 
