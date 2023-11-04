@@ -43,9 +43,6 @@ function Login(){
     });
 
     return (<div className='content'>
-        <h2>React Google Login</h2>
-            <br />
-            <br />
             <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
             {user && ManageUser(user)}
     </div>)    
