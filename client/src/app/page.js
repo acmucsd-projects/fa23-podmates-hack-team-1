@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main>
       <div>
-        <p>bello</p>
+        <p>Hello</p>
         <ChatInbox/>
       </div>
     </main>
