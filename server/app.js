@@ -55,6 +55,10 @@ app.get('/clearCookie', (req, res) => {  //clears cookies, called during logout
   res.clearCookie('name').end();
 })
 
+app.get('/', (req, res) =>{
+  res.send("Hello Express");
+})
+
 dotenv.config();
 
 mongoose.connect(process.env.DB_URL, {
