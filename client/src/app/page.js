@@ -1,12 +1,13 @@
-import Image from 'next/image'
+"use client"
 import styles from './page.module.css'
-import ChatInbox from './pages/ChatInbox'
-export default function Home() {
+import SignIn from './pages/SignIn'
+
+export default function App() {
   return (
     <main>
       <div>
         <p>bello</p>
-        <ChatInbox/>
+        <SignIn/>
       </div>
     </main>
   )

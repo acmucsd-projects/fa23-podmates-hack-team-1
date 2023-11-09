@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GoogleLogin, googleLogout, useGoogleOneTapLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
-import ManageUser from '../ManageUser'; 
+import ManageUser from './ManageUser'; 
 
 function decodeJwtResponse(response){
     return jwtDecode(JSON.stringify(response));

@@ -1,3 +1,4 @@
+
 function ManageUser(user){ //prop for Login.js (google login)
     return (
         <div className="userProfiles">
