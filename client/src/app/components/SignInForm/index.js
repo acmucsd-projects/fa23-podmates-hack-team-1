@@ -20,7 +20,6 @@ export default function SignInForm() {
         setHidePassword(!hidePassword);
     }
     console.log(user);
-    // should add another label & input for user password
     // to add css to the different items, just add className='' blah blah blah
     return(
         <div>
