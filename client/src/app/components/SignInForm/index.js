@@ -47,13 +47,13 @@ export default function SignInForm() {
                                 onChange={(e) => setUser({...user,password: e.target.value})}
                             />
 
-                        <button 
-                            type='toggle-btn' 
-                            className="visibility-btn"
-                            onClick={handlePasswordVisibility}
-                        >
-                            <FontAwesomeIcon icon={hidePassword ? faEye : faEyeSlash} size="2xs"/>
-                        </button>
+                            <button 
+                                type='toggle-btn' 
+                                className="visibility-btn"
+                                onClick={handlePasswordVisibility}
+                            >
+                                <FontAwesomeIcon icon={hidePassword ? faEye : faEyeSlash} size="2xs"/>
+                            </button>
                         </div>
                     </label>
                 </div>
