@@ -7,11 +7,11 @@ export default function SignInForm() {
         username:'', 
         password:''
     });
-    const [hidePassword, setHidePassword] = useState(true);
-    const [validUser, setValidUser] = useState(true);
+    const [hidePassword, setHidePassword] = useState(true); //whether they see pass or not
+    const [validUser, setValidUser] = useState(true); 
     
     const handleUserLogIn = (e) => {
-        e.preventDefault();
+        e.preventDefault(); //check if matches in database
         //...need to check** username & password in our database here, should also be an async await function
         return true;
     }
