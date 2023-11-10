@@ -8,6 +8,10 @@ label {
     line-height: normal;
 }
 
+.input-container {
+    margin-bottom: 15px;
+}
+
 .sign-in-input {
     color: #1E1E1E;
     font-family: SF Pro;
@@ -38,10 +42,6 @@ label {
 }
 
 .visibility-btn {
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0; */
     color: #181724;
 }
 

@@ -24,17 +24,40 @@ export default function SignInForm() {
     return(
         <div>
             <form>
-                <label>
-                    Username<br/>
-                    <input type="text" className='sign-in-input' value={user.username} onChange={(e) => setUser({...user,username: e.target.value})}/>
-                </label> <br/>
-                <label>
-                    Password <br/>
-                    <input type={hidePassword ? "password" : "text"} className='sign-in-input' value={user.password} onChange={(e) => setUser({...user,password: e.target.value})}/>
-                </label>
-                <button type='toggle-btn' className="visibility-btn"onClick={handlePasswordVisibility}>
-                    <FontAwesomeIcon icon={hidePassword ? faEye : faEyeSlash} size="2xs"/>
-                </button> <br/>
+                <div className='input-container'>
+                    <label>
+                        Username<br/>
+                        <input 
+                            type="text" 
+                            className='sign-in-input' 
+                            value={user.username} 
+                            onChange={(e) => setUser({...user,username: e.target.value})}
+                        />
+                    </label>
+                </div>
+
+                <div className='input-container'>
+                    <label>
+                        Password <br/>
+                        <div className='password-input-container'>
+                            <input 
+                                type={hidePassword ? "password" : "text"} 
+                                className='sign-in-input' 
+                                value={user.password} 
+                                onChange={(e) => setUser({...user,password: e.target.value})}
+                            />
+
+                        <button 
+                            type='toggle-btn' 
+                            className="visibility-btn"
+                            onClick={handlePasswordVisibility}
+                        >
+                            <FontAwesomeIcon icon={hidePassword ? faEye : faEyeSlash} size="2xs"/>
+                        </button>
+                        </div>
+                    </label>
+                </div>
+
                 <button type='submit' className="sign-in-btn" onClick={handleUserLogIn}>Sign In</button>
             </form>
         </div>
