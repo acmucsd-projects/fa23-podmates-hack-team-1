@@ -2,13 +2,10 @@
 const express = require('express');
 const router = express.Routher();
 
+const profileController = require('../controllers/profileController');
 
+//add API routes here
+router.get('/userProfile', profileController.getUserProfile);
+router.post('/userProfile', profileController.postUser);
 
-
-
-const getUserProfile = async (req, res) =>  {
-    
-    const userProfile = {
-
-    }
-}
+module.exports = router;

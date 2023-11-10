@@ -6,6 +6,19 @@ const offCampus = require('./offCampus');
 
 const UserProfileSchema = new mongoose.Schema(
     {
+        //add user/password
+        username: {
+            type: String,
+            required: true,
+        },
+        password: {
+            type: String,
+            rquired: true,
+        },
+        email: {
+            type: String,
+            required: true,
+        },
         name: {
             type: String,
             required: true,
