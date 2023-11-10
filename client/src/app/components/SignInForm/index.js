@@ -4,7 +4,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import './SignInForm.css';
 export default function SignInForm() {
     const [user, setUser] = useState({
-        username:'', 
+        email:'', 
         password:''
     });
     const [hidePassword, setHidePassword] = useState(true); //whether they see pass or not
@@ -25,12 +25,12 @@ export default function SignInForm() {
             <form>
                 <div className='input-container'>
                     <label>
-                        Username<br/>
+                        Email<br/>
                         <input 
                             type="text" 
                             className='sign-in-input' 
-                            value={user.username} 
-                            onChange={(e) => setUser({...user,username: e.target.value})}
+                            value={user.email} 
+                            onChange={(e) => setUser({...user,email: e.target.value})}
                         />
                     </label>
                 </div>
