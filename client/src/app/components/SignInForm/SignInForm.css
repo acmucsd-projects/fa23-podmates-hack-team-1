@@ -40,8 +40,16 @@ label {
     border-radius: 25px;
     background: #F5F4F6;
 }
-
+/* we need to fix dis so that she moves with the bar + stick to it */
 .visibility-btn {
     color: #181724;
+    position: absolute;
+    left: 250px;
+    top: 210px;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
+
+
 

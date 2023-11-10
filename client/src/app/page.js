@@ -6,7 +6,6 @@ export default function App() {
   return (
     <main>
       <div>
-        <p>bello</p>
         <SignIn/>
       </div>
     </main>

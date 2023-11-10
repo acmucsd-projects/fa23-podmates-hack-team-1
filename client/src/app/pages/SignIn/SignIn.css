@@ -1,0 +1,20 @@
+.sign-in-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+.left-container {
+    flex: 1;
+    background-color:hotpink;
+}
+
+.right-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+

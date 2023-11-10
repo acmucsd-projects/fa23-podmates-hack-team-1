@@ -20,7 +20,6 @@ export default function SignInForm() {
         setHidePassword(!hidePassword);
     }
     console.log(user);
-    // to add css to the different items, just add className='' blah blah blah
     return(
         <div>
             <form>
@@ -52,7 +51,7 @@ export default function SignInForm() {
                                 className="visibility-btn"
                                 onClick={handlePasswordVisibility}
                             >
-                                <FontAwesomeIcon icon={hidePassword ? faEye : faEyeSlash} size="2xs"/>
+                                <FontAwesomeIcon icon={hidePassword ? faEye : faEyeSlash} size="m"/>
                             </button>
                         </div>
                     </label>
