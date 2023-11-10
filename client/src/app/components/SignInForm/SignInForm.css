@@ -1,0 +1,47 @@
+label {
+    color: #1E1E1E;
+    text-align: center;
+    font-family: SF Pro;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.sign-in-input {
+    color: #1E1E1E;
+    font-family: SF Pro;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    display: flex;
+    width: 266px;
+    height: 32px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+
+    border: none;
+    outline: none;
+    border-bottom: 1px solid;
+    
+}
+
+.sign-in-btn {
+    width: 300px;
+    height: 45px;
+    flex-shrink: 0;
+    border-radius: 25px;
+    background: #F5F4F6;
+}
+
+.visibility-btn {
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0; */
+    color: #181724;
+}
+
