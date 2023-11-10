@@ -1,9 +1,5 @@
 {
   "dependencies": {
-<<<<<<< Updated upstream
-    "cookie-parser": "^1.4.6",
-    "express-basic-auth": "^1.2.1"
-=======
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
@@ -16,6 +12,5 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "react-router-dom": "^6.18.0"
->>>>>>> Stashed changes
   }
 }
