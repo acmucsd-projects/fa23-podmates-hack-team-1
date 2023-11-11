@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
 const usersRouter = require('./routes/users');
+const UserProfile = require('../models/userProfile');
 
 const app = express();
 

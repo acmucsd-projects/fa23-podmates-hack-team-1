@@ -1,6 +1,6 @@
 //"routes" to appropriate controller logic
 const express = require('express');
-const router = express.Routher();
+const router = express.Router();
 
 const profileController = require('../controllers/profileController');
 
