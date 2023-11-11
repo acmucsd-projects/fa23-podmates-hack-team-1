@@ -26,20 +26,35 @@ const getUserProfile = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error: Unable to retrieve user profiles'});
     }
 }
-
+/**creates new user account 
+ * to do: after create account need to deal with new user/password encryption; ask jim
+ * 
+*/
 const postUser = async (req, res) => {
     try {
-        /* req.body parses and retrieves data from client side */
+        /* req.body parses and retrieves data necessary to create profile from client side */
         const userData = req.body;
         const newProfile = await UserProfile.create(userData);
         res.status(201).json({message: 'User profile created successfully!', profile: newProfile});
     }
     catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: 'Internal Server Error: Could not create new user profile' });
     }
     
 }
+
+/**request to deal with updating user profiles (I think we do put/patch requests) */
+
+
+
+/**request to delete/remove user profiles (Delete request) */
+
+
+/** */
+
+
+
 
 
 module.exports = {getUserProfile, postUser};
