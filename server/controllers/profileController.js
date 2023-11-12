@@ -1,4 +1,6 @@
 //this file deals with the post/get requests for the database to the server
+//install bcrypt to hash passwords: npm install bcrypt
+const bcrypt = require('bycrpt');
 const UserProfile = require('../profiles/userProfile');
 
 const getUserProfile = async (req, res) => {
@@ -32,9 +34,18 @@ const getUserProfile = async (req, res) => {
 */
 const postUser = async (req, res) => {
     try {
-        /* req.body parses and retrieves data necessary to create profile from client side */
-        const userData = req.body;
-        const newProfile = await UserProfile.create(userData);
+        /* req.body parses and retrieves data necessary to create profile from client side 
+        *  need to encrypt password by hashing using bycrypt
+        */
+        const {username, password, ...userData} = req.body;
+        // 10 is the number of salt rounds which basically makes it harder for people to guess passwords
+        // salt rounds just combine pass with random data before hashing so attackers are less prone to guessing it correctly
+        const hashedPassword = await bcrypt.hash(password, 10); 
+        const newProfile = await UserProfile.create({
+            username,
+            password: hashedPassword,
+            ...userData,
+        });
         res.status(201).json({message: 'User profile created successfully!', profile: newProfile});
     }
     catch (error) {
@@ -54,7 +65,5 @@ const postUser = async (req, res) => {
 /** */
 
 
-
-
-
+//export requests to diff files
 module.exports = {getUserProfile, postUser};
