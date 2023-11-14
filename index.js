@@ -17,6 +17,7 @@
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser('dsahfjf89481923ksdfaj')); //encryption key for cookies, not really important
+//server.use('/api', router); 
 
 // app.use('/users', usersRouter); //I think this is how we are able to communicate with data base (routers)
 // //this is a middleware, basically like useEffect(), runs everytime a request is heard, it is mounted with app use

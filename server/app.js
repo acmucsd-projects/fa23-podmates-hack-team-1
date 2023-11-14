@@ -2,8 +2,6 @@ const express = require('express');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const cookieParser = require('cookie-parser'); //gives and verifies cookies, could use after initial verification
-//installed a couple of dependenices
 const usersRouter = require('./routes/users');
 const e = require('express');
 const { default: axios } = require('axios');
@@ -11,14 +9,16 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const GoogleStrategy = require('passport-google-oauth20');
 const session = require('express-session');
+const UserProfile = require('../models/userProfile');
+
 const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser('dsahfjf89481923ksdfaj')); //encryption key for cookies, not really important
 
 app.use('/users', usersRouter); //I think this is how we are able to communicate with data base (routers)
+app.use('/api', router); 
 //this is a middleware, basically like useEffect(), runs everytime a request is heard, it is mounted with app use
 const UserSchema = new mongoose.Schema({username: String, password: String});
 const User = mongoose.model('User', UserSchema)//imput user schema inside here
