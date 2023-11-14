@@ -9,8 +9,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const GoogleStrategy = require('passport-google-oauth20');
 const session = require('express-session');
-const UserProfile = require('../models/userProfile');
-
+const UserProfile = require('./profiles/userProfile');
+const apiRouter = require('./routes/apis');
 const app = express();
 
 app.use(logger('dev'));
@@ -18,14 +18,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/users', usersRouter); //I think this is how we are able to communicate with data base (routers)
-app.use('/api', router); 
+app.use('/api', apiRouter); 
 //this is a middleware, basically like useEffect(), runs everytime a request is heard, it is mounted with app use
-const UserSchema = new mongoose.Schema({username: String, password: String});
-const User = mongoose.model('User', UserSchema)//imput user schema inside here
-User.create({username: 123, password: 345}).then(result => console.log(result)); 
+UserProfile.create({username: 123, password: 345, }).then(result => console.log(result)); 
 passport.use(new LocalStrategy(async (username, password, done) => {
   try {
-    const user = await User.findOne({ username: username });
+    const user = await UserProfile.findOne({ username: username });
     
     if (!user) {
       return done(null, false, { message: 'Invalid username or password' });
@@ -78,7 +76,7 @@ passport.serializeUser((user, done) => { //these two methods stores and reads us
 
 passport.deserializeUser(async (id, done) => {
   try {
-    const user = await User.findById(id);
+    const user = await UserProfile.findById(id);
     done(null, user);
   } catch (error) {
     done(error);

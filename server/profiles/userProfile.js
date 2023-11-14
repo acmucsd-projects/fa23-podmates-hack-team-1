@@ -13,20 +13,20 @@ const UserProfileSchema = new mongoose.Schema(
         },
         password: {
             type: String,
-            rquired: true,
+            required: true,
         },
         email: {
             type: String,
             unique: true,
-            required: true,
+            required: false,
         },
         name: {
             type: String,
-            required: true,
+            required: false,
         },
         age: {
             type: Number,
-            required: true, 
+            required: false, 
         },
         image: {
             type: String,
@@ -34,15 +34,15 @@ const UserProfileSchema = new mongoose.Schema(
         },
         pronouns: {
             type: String,
-            required: true,
+            required: false,
         },
         gender: {
             type: String, 
-            required: true,
+            required: false,
         },
         bio: {
             type: String,
-            required: true,
+            required: false,
         },
         apartmentPreferences:{
             type: [apartmentPreferences],
