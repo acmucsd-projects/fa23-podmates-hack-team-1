@@ -90,7 +90,7 @@ app.get('/', (req, res) =>{
 })
 
 app.get('/authenticate', passport.authenticate(['local', 'google'], {
-  successRedirect: '/profile',
+  successRedirect: '/',
   failureRedirect: '/login'
 }))
 
