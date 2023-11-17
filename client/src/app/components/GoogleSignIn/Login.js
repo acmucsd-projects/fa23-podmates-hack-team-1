@@ -1,8 +1,10 @@
+
 import React, { useEffect, useState } from 'react';
-import { GoogleLogin, googleLogout, useGoogleOneTapLogin } from '@react-oauth/google';
+import { GoogleLogin, GoogleOAuthProvider, googleLogout, useGoogleLogin, useGoogleOneTapLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import ManageUser from './ManageUser'; 
-
+import './Login.css'
+import SignInWithGoogle from './GoogleSignIn';
 function decodeJwtResponse(response){
     return jwtDecode(JSON.stringify(response));
   }
@@ -12,7 +14,7 @@ function loginErr(){
   }
 
 function Login(){
-
+    const clientId = '1004028449793-8h4ogk869ml8e181bpvgv0ohhtvlnt4p.apps.googleusercontent.com';
     const [user,setUser] = useState(null);
     const responseMessage = (response) => {
       const text = decodeJwtResponse(response);
@@ -29,18 +31,27 @@ function Login(){
     }
     
 
-    useGoogleOneTapLogin({
-      onSuccess:  responseMessage
-      ,
-      onError: () => {
-        console.log('Login Failed');
-      },
-    });
+    // useGoogleOneTapLogin({
+    //   onSuccess:  responseMessage,
+    //   onError: () => {
+    //     console.log('Login Failed');
+    //   },
+    // });
 
-    return (<div className='content'>
-            <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+
+    // const login = useGoogleLogin({
+    //   onSuccess: tokenResponse => console.log(tokenResponse),
+    // });
+
+
+    return (
+      <div className='content'>
+        <GoogleOAuthProvider clientId={clientId}>
+            <SignInWithGoogle/>
             {user && ManageUser(user)}
-    </div>)    
+          </GoogleOAuthProvider>
+        </div>
+    )    
 }
 
 

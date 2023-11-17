@@ -18,3 +18,26 @@
     padding: 20px;
 }
 
+.sign-up-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+a {
+    color: black;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: hotpink;
+}
+.forgot-password {
+    padding-top: 15px;
+}
+
+.sign-up {
+    padding-left: 10px;
+}
+
+
