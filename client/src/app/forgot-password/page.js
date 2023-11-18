@@ -1,6 +1,4 @@
 "use client"
-import './SignInForm.css';
-
 
 export default function ForgotPassword() {
     
