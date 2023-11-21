@@ -4,6 +4,7 @@ const lifestyle = require('./lifestyle');
 const onCampus = require('./onCampus');
 const offCampus = require('./offCampus');
 
+
 const UserProfileSchema = new mongoose.Schema(
     {
         //add user/password
