@@ -1,8 +1,10 @@
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
-import SignInForm from '../SignInForm';
-export default function SignInWithGoogle(props) {
+import {useRouter} from 'next/navigation';
+export default function SignInWithGoogle() {
+  const [feedback, setFeedback] = useState('');
+  const {push} = useRouter();
   const googleLogin = useGoogleLogin({
     onSuccess: tokenResponse => {
       console.log(tokenResponse)
@@ -18,9 +20,11 @@ export default function SignInWithGoogle(props) {
         })
         .then((response) => {
           console.log(response);
-          
+          setFeedback('Login Successful');
+          push('/'); 
         })
         .catch((error) => {
+          setFeedback('Login failed, please register or try again');
           console.log(error);
         })  
         .finally(() => {
@@ -35,7 +39,10 @@ export default function SignInWithGoogle(props) {
     // ...other options
   }); 
 
+
   return (
+    <div>
+      {feedback ? <p className="feedback">{feedback}</p> : null}
     <button className="gsi-material-button" style={{ width: '300px' }} onClick={(e) => (e.preventDefault(), googleLogin())}>
       <div className="gsi-material-button-state"></div>
       <div className="gsi-material-button-content-wrapper">
@@ -53,5 +60,6 @@ export default function SignInWithGoogle(props) {
         <span style={{ display: 'none' }}>Sign in with Google</span>
       </div>
     </button>
+    </div>
   );
 }
