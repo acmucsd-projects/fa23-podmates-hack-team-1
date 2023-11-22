@@ -94,6 +94,7 @@ app.get('/authenticate', passport.authenticate(['local', 'google'], {
 
 dotenv.config();
 
+
 mongoose.connect(process.env.DB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true }).then(() => {

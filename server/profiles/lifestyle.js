@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const lifestyle = new mongoose.Schema (
     {
-        Chronotype: {
+        Chronotype: { //if u are morning or night person
             type: String,
             required: false,
         },
