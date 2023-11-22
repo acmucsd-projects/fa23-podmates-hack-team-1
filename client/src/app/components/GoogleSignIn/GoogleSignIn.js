@@ -1,11 +1,39 @@
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
-export default function SignInWithGoogle() {
+import {useState, useEffect} from 'react';
+import SignInForm from '../SignInForm';
+export default function SignInWithGoogle(props) {
   const googleLogin = useGoogleLogin({
-    onSuccess: tokenResponse => console.log(tokenResponse),
+    onSuccess: tokenResponse => {
+      console.log(tokenResponse)
+      axios.get("https://oauth2.googleapis.com/tokeninfo?access_token="+tokenResponse.access_token)
+    .then((response) => {
+      console.log(typeof response.data.email);
+      var res = response.data.email;
+      res = res.replace('@ucsd.edu', '');
+      axios.get('http://localhost:5000/auth/google', {
+          params: {
+            username: res
+          }
+        })
+        .then((response) => {
+          console.log(response);
+          
+        })
+        .catch((error) => {
+          console.log(error);
+        })  
+        .finally(() => {
+          console.log('response received');
+        })
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  },
     onError: () => console.log('Google login failed'),
     // ...other options
-  });
+  }); 
 
   return (
     <button className="gsi-material-button" style={{ width: '300px' }} onClick={(e) => (e.preventDefault(), googleLogin())}>

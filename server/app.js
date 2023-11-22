@@ -13,6 +13,7 @@ const UserProfile = require('./profiles/userProfile');
 const apiRouter = require('./routes/apis');
 const app = express();
 const cors = require('cors');
+const CustomStrategy = require('passport-custom');
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
@@ -46,21 +47,19 @@ passport.use(new LocalStrategy(async (username, password, done) => {
 }));
 
 
-passport.use(new GoogleStrategy({     //google authentication
-  clientID: '244357169962-d2n0eod73tfvt935ke5epbrcldfd97u0.apps.googleusercontent.com',
-  clientSecret: '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',
-  callbackURL: 'http://localhost:5000/',
-  scope: ['profile', 'email']
-}, (accessToken, refreshToken, profile, done) => {
-  user = User.findOne({username : profile.email}), function(err, existingUser){
-    if(err){
-      return done(err, 'google log in failed, try again or register');
-    }
 
-    if(existingUser) {
-      return done(null, existingUser);
+
+passport.use(new CustomStrategy(async (req, done) => {
+    try{
+      user = await UserProfile.findOne({username: (req.query.username + '@ucsd.edu')});
+      if(!(user === null)){
+        return done(null, user);
+      } else {
+        return done(null, false);
+      }
+    }catch(error) {
+      return done(error, false);
     }
-  }
 }))
 
 
@@ -94,9 +93,8 @@ app.get('/auth', passport.authenticate(['local'], {
   successRedirect: '/auth/user'
 }))
 
-app.get('/auth/google', passport.authenticate(['google'], {
-  successRedirect: '/auth/user',
-  passReqToCallback: true
+app.get('/auth/google', passport.authenticate(['custom'], {
+  successRedirect: '/auth/user'
 }))
 
 dotenv.config();

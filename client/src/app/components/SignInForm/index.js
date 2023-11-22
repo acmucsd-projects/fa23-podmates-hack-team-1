@@ -14,18 +14,12 @@ export default function SignInForm() {
 
     const [hidePassword, setHidePassword] = useState(true); 
     const [feedback, setFeedback] = useState(); 
-    const [isValidUser, setValidUser] = useState(false);
     const { push } = useRouter();
     /*
         need the get requests form backend... i personally don't know how
         calling it works so i'm waiting to see what it looks like on the backend.
         we definitely need to implement this function for checking backend though!
     */
-   useEffect(() => {
-    if(isValidUser){
-        
-    }
-   },[isValidUser])
     const handleUserLogIn = async (e) => {
         e.preventDefault();
         axios.get('http://localhost:5000/auth', {
