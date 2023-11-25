@@ -100,6 +100,19 @@ app.get('/isAuth', checkAuthentication, (req,res) => {
   res.redirect('/');
 })
 
+app.post('/reg', (req, res) => {
+  UserProfile.findOne({username: req.query.username}).then((user) => {
+    if(user) {
+      return res.status(400).send('this user has already been saved into this account');
+    } else {
+      const newUser = new UserProfile({username: req.query.username, password: req.query.password});
+      newUser.save();
+      return res.status(200).send("success");
+    }
+  })
+} 
+)  
+
 app.get('/', (req, res) => {
   res.send('');
 })

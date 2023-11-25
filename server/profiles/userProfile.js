@@ -10,6 +10,7 @@ const UserProfileSchema = new mongoose.Schema(
         //add user/password
         username: {
             type: String,
+            unique: true,
             required: true,
         },
         password: {
@@ -18,7 +19,7 @@ const UserProfileSchema = new mongoose.Schema(
         },
         email: {
             type: String,
-            unique: true,
+            unique: false, //change later
             required: false,
         },
         name: {
