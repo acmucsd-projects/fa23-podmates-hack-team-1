@@ -6,6 +6,8 @@ import './SignInForm.css';
 import axios from 'axios';
 import Login from "../GoogleSignIn/Login";
 //import { redirect } from "next/dist/server/api-utils";
+
+axios.defaults.withCredentials = true;
 export default function SignInForm() {
     const [user, setUser] = useState({
         email:'', 

@@ -2,13 +2,16 @@ import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 import {useRouter} from 'next/navigation';
+
+axios.defaults.withCredentials = true;
+
 export default function SignInWithGoogle() {
   const [feedback, setFeedback] = useState('');
   const {push} = useRouter();
   const googleLogin = useGoogleLogin({
     onSuccess: tokenResponse => {
       console.log(tokenResponse)
-      axios.get("https://oauth2.googleapis.com/tokeninfo?access_token="+tokenResponse.access_token)
+      axios.get("https://oauth2.googleapis.com/tokeninfo?access_token="+tokenResponse.access_token, {withCredentials: false})
     .then((response) => {
       console.log(typeof response.data.email);
       var res = response.data.email;

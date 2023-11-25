@@ -5,17 +5,19 @@ import axios from 'axios';
 export default function App() {
 const [user, setUser] = useState({});
 useEffect(() => {
-  async() => {
-    axios.get("http://localhost:5000/isAuth")
+    axios.get("http://localhost:5000/isAuth", {withCredentials: true})
     .then((response) =>{
-      console.log(response.user);
+      console.log(response);
+      setUser(response);
+      console.log('isAuth running')
+    })
+    .catch((error) => {
+      console.log(error);
     })
     
-    
-  }
-})
+}, [])
   return (
-    <main>
+    <main>  
         <h1>Home Page</h1>
     </main>
   )
