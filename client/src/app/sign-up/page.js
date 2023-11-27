@@ -41,7 +41,7 @@ export default function SignUp() {
                     <div className='return-container'>
                         <Link className='sign-in' href='/sign-in'>{`<`} Back to Sign In </Link>
                     </div>
-                    <h1>Sign Up</h1>
+                    <h1>Create an account</h1>
                     <ProfileSignUpForm user={user} setUser={setUser} setShowPopUp={setShowPopUp} setPopUpType={setPopUpType} />
                 </div>
             </div>
