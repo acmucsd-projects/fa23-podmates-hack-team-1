@@ -9,7 +9,7 @@ export default function SignIn() {
     return(
         <div className="sign-in-container">
             <div className="left-container">
-
+                <></>
             </div>
             <div className="right-container">
                 <h1>Insert Logo Here</h1>

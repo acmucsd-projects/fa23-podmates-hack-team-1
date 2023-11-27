@@ -1,4 +1,6 @@
 const pronouns = [
+    "any",
+    "other",
     "ze/hir",
     "ze/zir",
     "xe/xem",
@@ -20,7 +22,6 @@ const pronouns = [
     "xe/xim",
     "yo/yo",
     "tey/tem",
-    "they/them",
     "e/em/eir",
     "co/co",
     "vi/ver",

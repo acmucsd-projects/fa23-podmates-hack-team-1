@@ -23,6 +23,18 @@ export default function SignUp() {
     });
     const [showPopUp, setShowPopUp] = useState(false);
     const [popUpType, setPopUpType] = useState('pronouns');
+    const [currentStep, setCurrentStep] = useState(1);
+    
+    const nextStep = () => {
+        if(currentStep != 4) {
+            setCurrentStep(currentStep+1);
+        }
+    }
+    const previousStep = () => {
+        if(currentStep != 1) {
+            setCurrentStep(currentStep-1);
+        }
+    }
     console.log('Show pop up: ', showPopUp);
     console.log('Pop up type: ', popUpType);
     return(
@@ -35,7 +47,7 @@ export default function SignUp() {
             )}
             <div className="sign-up-container">
                 <div className="left-container">
-
+                    <></>
                 </div>
                 <div className="right-container">
                     <div className='return-container'>
