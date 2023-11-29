@@ -68,9 +68,9 @@ export default function GoogleSignUpForm({ user, setUser, nextStep }) {
                         <path fill="none" d="M0 0h48v48H0z"></path>
                     </svg>
                 </div>
-                <span className="gsi-material-button-contents">Sign in with Google</span>
+                <span className="gsi-material-button-contents">Sign up with Google</span>
                 {/* This span seems to be for screen readers or similar, ensure this is handled correctly in your accessibility considerations */}
-                <span style={{ display: 'none' }}>Sign in with Google</span>
+                <span style={{ display: 'none' }}>Sign up with Google</span>
             </div>
         </button>
         <button disabled={!isValid}>
