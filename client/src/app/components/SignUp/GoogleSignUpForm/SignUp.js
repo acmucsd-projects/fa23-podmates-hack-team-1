@@ -5,13 +5,16 @@ import GoogleSignUpForm from '.';
 import './signUp.css';
   
 
-function GoogleSignUp(){
+function GoogleSignUp({user, setUser, childUser}){
     const clientId = '1004028449793-8h4ogk869ml8e181bpvgv0ohhtvlnt4p.apps.googleusercontent.com';
+    function childchildUser(email){
+      childUser(email);
+    }
     return (
       <div className='content'>
         <GoogleOAuthProvider clientId={clientId}>
-            <GoogleSignUpForm/>
-          </GoogleOAuthProvider>
+            <GoogleSignUpForm user={user} setUser={setUser} childchildUser = {childchildUser}/>
+          </GoogleOAuthProvider> 
         </div>
     )    
 }

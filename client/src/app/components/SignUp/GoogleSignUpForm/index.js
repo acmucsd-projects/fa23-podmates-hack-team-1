@@ -12,10 +12,9 @@ axios.defaults.withCredentials = true;
     2. if the email has been registered in our database, navigate to home
     3. if the email isn't a @ucsd.edu, we return the necessary feedback
 */
-export default function GoogleSignUpForm({ user, setUser, nextStep }) {
+export default function GoogleSignUpForm({user, setUser, childchildUser}) {
   const [feedback, setFeedback] = useState('');
   const [isValid, setIsValid] = useState(false);
-  const {push} = useRouter();
   const googleLogin = useGoogleLogin({
     onSuccess: tokenResponse => {
       console.log(tokenResponse)
@@ -23,30 +22,19 @@ export default function GoogleSignUpForm({ user, setUser, nextStep }) {
     .then((response) => {
       console.log(typeof response.data.email);
       var res = response.data.email;
-      res = res.replace('@ucsd.edu', '');
-      axios.get('http://localhost:5000/auth/google', {
-          params: {
-            username: res
-          }
-        })
-        .then((response) => {
-          console.log(response);
-          setFeedback('Login Successful');
-          push('/'); 
-        })
-        .catch((error) => {
-          setFeedback('Login failed, please register or try again');
-          console.log(error);
-        })  
-        .finally(() => {
-          console.log('response received');
-        })
+      childchildUser(res);
+      setFeedback("Google Login Successful");
     })
     .catch((error) => {
       console.log(error);
+      setFeedback("Google sign up failed");
     })
   },
-    onError: () => console.log('Google login failed'),
+    onError: () => {
+    console.log('Google SignUp failed') 
+    setFeedback('Google sign up failed');
+  },
+
     // ...other options
   }); 
 
@@ -72,9 +60,6 @@ export default function GoogleSignUpForm({ user, setUser, nextStep }) {
                 {/* This span seems to be for screen readers or similar, ensure this is handled correctly in your accessibility considerations */}
                 <span style={{ display: 'none' }}>Sign up with Google</span>
             </div>
-        </button>
-        <button disabled={!isValid}>
-            Continue
         </button>
     </div>
   );
