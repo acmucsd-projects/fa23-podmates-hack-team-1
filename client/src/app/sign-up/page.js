@@ -55,11 +55,10 @@ export default function SignUp() {
                     <div className='return-container'>
                         <Link className='sign-in' href='/sign-in'>{`<`} Back to Sign In </Link>
                     </div>
-                    <h1>Create an account</h1>
-                    
                     {
-                       isGoogled ? <ProfileSignUpForm user={user} setUser={setUser} setShowPopUp={setShowPopUp} setPopUpType={setPopUpType}/>
-                       : <GoogleSignUp user={user} setUser={setUser}  setIsGoogled={setIsGoogled} />
+                       isGoogled ?
+                        <ProfileSignUpForm user={user} setUser={setUser} setShowPopUp={setShowPopUp} setPopUpType={setPopUpType}/>
+                       : <GoogleSignUp user={user} setUser={setUser} isGoogled={isGoogled} setIsGoogled={setIsGoogled} />
                     }
                 </div>
             </div>
