@@ -2,6 +2,7 @@
 import styles from './page.module.css';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import Link from 'next/link';
 export default function App() {
 const [user, setUser] = useState({});
 useEffect(() => {
@@ -19,6 +20,9 @@ useEffect(() => {
   return (
     <main>  
         <h1>Home Page</h1>
+        <p>this is a WIP!</p>
+        <Link href='sign-in'>Sign In</Link> <br/>
+        <Link href='sign-up'>Sign Up</Link>
     </main>
   )
 }

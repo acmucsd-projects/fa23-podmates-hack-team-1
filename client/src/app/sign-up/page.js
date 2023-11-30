@@ -25,19 +25,7 @@ export default function SignUp() {
     const [showPopUp, setShowPopUp] = useState(false);
     const [popUpType, setPopUpType] = useState('pronouns');
     const [currentStep, setCurrentStep] = useState(1);
-    const [isGoogled, setisGoogled] = useState(false);
-    function childUser(email){
-        let newUser = user;
-        newUser.email = email;
-        setUser(newUser); 
-        console.log("user updated");
-        setisGoogled(true);
-    }
-    useEffect(()=>{
-        if(!(user.email === '')){
-            setisGoogled(true);
-        }
-    }, [setUser])
+    const [isGoogled, setIsGoogled] = useState(false);
     
     const nextStep = () => {
         if(currentStep != 4) {
@@ -71,7 +59,7 @@ export default function SignUp() {
                     
                     {
                        isGoogled ? <ProfileSignUpForm user={user} setUser={setUser} setShowPopUp={setShowPopUp} setPopUpType={setPopUpType}/>
-                       : <GoogleSignUp user={user} setUser={setUser}  childUser = {childUser} />
+                       : <GoogleSignUp user={user} setUser={setUser}  setIsGoogled={setIsGoogled} />
                     }
                 </div>
             </div>
