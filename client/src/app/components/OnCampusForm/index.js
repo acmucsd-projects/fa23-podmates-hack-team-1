@@ -41,7 +41,7 @@ export default function OnCmpusForm({ user, setUser, setShowPopUp, setPopUpType 
                 <div className='input-container'>
                     <label>
                         Housing Type<br />
-                        <SelectButton value={selectHousing} onChange={handleHousingSelection} options={['Resiance Hall', 'Apartment']} />
+                        <SelectButton value={selectHousing} onChange={handleHousingSelection} options={['Residence Hall', 'Apartment']} />
                     </label>
                 </div>
 

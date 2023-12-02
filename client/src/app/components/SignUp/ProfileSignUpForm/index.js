@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
-import SelectionPopUp from "../SelectionPopUp";
+// import SelectionPopUp from "../SelectionPopUp";
 import { SelectButton } from 'primereact/selectbutton';
 import { Checkbox } from 'primereact/checkbox';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
