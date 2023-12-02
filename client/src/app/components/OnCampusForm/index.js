@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { SelectButton } from 'primereact/selectbutton';
 import { Checkbox } from 'primereact/checkbox';
+import { Dropdown } from 'primereact/dropdown';
+
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 
 
@@ -22,8 +24,18 @@ export default function OnCmpusForm({ user, setUser, setShowPopUp, setPopUpType 
 
     const [selectHousing, setSelectHousing] = useState('');
     const [selectCollege, setSelectCollege] = useState('');
+    const [BoolRoommate, setBoolRoommate] = useState('');
 
-
+    const Colleges = [
+        "Revelle College",
+        "John Muir College",
+        "Thurgood Marshall College",
+        "Earl Warren College",
+        "Eleanor Roosevelt College",
+        "Sixth College",
+        "Seventh College",
+        "Eighth College"
+    ];
 
     const handleHousingSelection = (e) => {
         setSelectHousing(e.value);
@@ -31,7 +43,12 @@ export default function OnCmpusForm({ user, setUser, setShowPopUp, setPopUpType 
     }
 
     const handleCollegeSelection = (e) => {
-        setSelectHousing(e.value);
+        setSelectCollege(e.value);
+        setUser({})
+    }
+
+    const handleRoommateBool = (e) => {
+        setBoolRoommate(e.value);
         setUser({})
     }
 
@@ -48,21 +65,15 @@ export default function OnCmpusForm({ user, setUser, setShowPopUp, setPopUpType 
                 <div className='input-container'>
                     <label>
                         College <br />
-                        {/* <Dropdown value={selectCollege} onChange={handleCollegeSelection} options={colleges} optionLabel="name"
-                            placeholder="Select a College" className="w-full md:w-14rem" /> */}
+                        <Dropdown value={selectCollege} onChange={handleCollegeSelection} options={Colleges}
+                            placeholder="Select a College" className="w-full md:w-14rem" />
                     </label>
                 </div>
 
                 <div className='input-container'>
                     <label>
                         Are you looking for a roommate or housemates? <br />
-                        <input
-                            type='text'
-                            className='sign-up-input'
-                            name='name'
-
-                            onChange={(e) => setUser({ ...user, name: e.target.value })}
-                        />
+                        <SelectButton value={BoolRoommate} onChange={handleRoommateBool} options={['Yes', 'No']} />
                     </label>
                 </div>
 
