@@ -12,7 +12,9 @@ const session = require('express-session');
 const UserProfile = require('./profiles/userProfile');
 const apiRouter = require('./routes/apis');
 const app = express();
-
+const cors = require('cors');
+const CustomStrategy = require('passport-custom');
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -20,20 +22,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/users', usersRouter); //I think this is how we are able to communicate with data base (routers)
 app.use('/api', apiRouter); 
 //this is a middleware, basically like useEffect(), runs everytime a request is heard, it is mounted with app use
-UserProfile.create({username: 123, password: 345, }).then(result => console.log(result)); 
+
+var user;
+
 passport.use(new LocalStrategy(async (username, password, done) => {
   try {
-    const user = await UserProfile.findOne({ username: username });
+    user = await UserProfile.findOne({ username: username });
     
-    if (!user) {
-      return done(null, false, { message: 'Invalid username or password' });
+    if (user === null) {
+      return done(null, false);
     }
 
     // Use bcrypt to compare the provided password with the hashed password stored in the database
     const isValidPassword = (user.password === password);
 
     if (!isValidPassword) {
-      return done(null, false, { message: 'Invalid username or password' });
+      return done(null, false);
     }
 
     return done(null, user);
@@ -43,21 +47,19 @@ passport.use(new LocalStrategy(async (username, password, done) => {
 }));
 
 
-passport.use(new GoogleStrategy({     //google authentication
-  clientID: '244357169962-d2n0eod73tfvt935ke5epbrcldfd97u0.apps.googleusercontent.com',
-  clientSecret: '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',
-  callbackURL: 'http://localhost:5000/',
-  scope: ['profile', 'email']
-}, (accessToken, refreshToken, profile, done) => {
-  User.findOne({email : profile.email}), function(err, existingUser){
-    if(err){
-      return done(err, 'google log in failed, try again or register');
-    }
 
-    if(existingUser) {
-      return done(null, existingUser);
+
+passport.use(new CustomStrategy(async (req, done) => {
+    try{
+      user = await UserProfile.findOne({username: (req.query.username + '@ucsd.edu')});
+      if(!(user === null)){
+        return done(null, user);
+      } else {
+        return done(null, false);
+      }
+    }catch(error) {
+      return done(error, false);
     }
-  }
 }))
 
 
@@ -83,13 +85,16 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-app.get('/', (req, res) =>{
-  res.send("Hello Express");
+app.get('/auth/user', (req, res) =>{
+  res.send(user);
 })
 
-app.get('/authenticate', passport.authenticate(['local', 'google'], {
-  successRedirect: '/',
-  failureRedirect: '/login'
+app.get('/auth', passport.authenticate(['local'], {
+  successRedirect: '/auth/user'
+}))
+
+app.get('/auth/google', passport.authenticate(['custom'], {
+  successRedirect: '/auth/user'
 }))
 
 dotenv.config();

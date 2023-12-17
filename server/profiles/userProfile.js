@@ -4,7 +4,8 @@ const lifestyle = require('./lifestyle');
 const onCampus = require('./onCampus');
 const offCampus = require('./offCampus');
 //forgot email --> deal with fetching email from database grab email and send link
-//
+//deal with images and how to get/post request it/ test using console.log
+
 const UserProfileSchema = new mongoose.Schema(
     {
         //add user/password
@@ -28,7 +29,7 @@ const UserProfileSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        age: {
+        age: { //change to birthday :D
             type: Number,
             required: true, 
             validate: { //to ensure you input an age older than 17; how to deal with consent if you are minor?
@@ -36,12 +37,11 @@ const UserProfileSchema = new mongoose.Schema(
                     return value >= 18
                 },
                 message: 'Age must be greater than 18'
-            }
-            
+            }            
         },
-        image: {
+        image: { //make it so 6 max photos of themselves 
             type: String,
-            required: false,
+            required: false,    
         },
         pronouns: {
             type: String,
