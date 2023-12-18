@@ -40,6 +40,34 @@ export default function apartmentPreferencesForm({}) {
         setPets(e.value);
         setUser({});
     }
+    const handlealcoholUsage = (e) => {
+        setAlcoholUsage(e.value);
+        setUser({});
+    }
+    const handledrugUsage = (e) => {
+        setDrugUsage(e.value);
+        setUser({});
+    }
+
+    const handleSmokingUsage = (e) => {
+        setSmokingUsage(e.value);
+        setUser({});
+    }
+
+    const handleLBGTQFriendly = (e) => {
+        setLGBTQfriendlly(e.value);
+        setUser({});
+    }
+
+    const handleReligion = (e) => {
+        setReligionfriendly(e.value);
+        setUser({});
+    }
+
+    const handleSexualOrientation = (e) => {
+        setSexualOrientation(e.value);
+        setUser({});
+    }
 
 
 
