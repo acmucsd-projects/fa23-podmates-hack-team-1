@@ -21,3 +21,10 @@ label {
     margin-bottom: 15px;
 }
 
+.p-dropdown-item, .p-dropdown-item-empty {
+    color: black;
+}
+
+li {
+    color: black;
+}

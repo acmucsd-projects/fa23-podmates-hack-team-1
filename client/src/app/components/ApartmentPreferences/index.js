@@ -5,13 +5,16 @@ import { Checkbox } from 'primereact/checkbox';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme from Jake 
 
 
+
 import { useRouter } from 'next/navigation';
-import './apartmentPreferencesForm.css';
+import './ApartmentPreferencesForm.css';
 import axios from 'axios';
 import Login from "../GoogleSignIn/Login";
-//import { redirect } from "next/dist/server/api-utils";
+import { redirect } from "next/dist/server/api-utils";
+import { Dropdown } from 'primereact/dropdown';
 
-export default function apartmentPreferencesForm({}) {
+
+export default function ApartmentPreferencesForm({}) {
     /**
      * implement: everything :pepehands:
      * 
@@ -19,7 +22,7 @@ export default function apartmentPreferencesForm({}) {
 
     /** Manages the state of various form fields */
     const[numberOfDesiredRoomates, setNumberOfDesiredRoomates] = useState('');
-    const[pets, setPets] = useState(false);
+    const[pets, setPets] = useState("");
     const[alcoholUsage, setAlcoholUsage] = useState(false);
     const[drugUsage, setDrugUsage] = useState(false);
     const[smokingUsage, setSmokingUsage] = useState(false);
@@ -33,92 +36,83 @@ export default function apartmentPreferencesForm({}) {
 
     /** Handles user interaction and updates the current state of the element into current state variables*/
     const handleNumberOfDesiredRoomatesSelection = (e) => {
-        setNumberOfDesiredRoomates(e.value);
-        setUser({});
+        setNumberOfDesiredRoomates(e.value); //e.target.value 
+        //setUser({});
     }
     const handlePets = (e) => {
         setPets(e.value);
-        setUser({});
+        //setUser({});
     }
     const handlealcoholUsage = (e) => {
         setAlcoholUsage(e.value);
-        setUser({});
+        //setUser({});
     }
     const handledrugUsage = (e) => {
         setDrugUsage(e.value);
-        setUser({});
+        //setUser({});
     }
 
     const handleSmokingUsage = (e) => {
         setSmokingUsage(e.value);
-        setUser({});
+        //setUser({});
     }
 
     const handleLBGTQFriendly = (e) => {
         setLGBTQfriendlly(e.value);
-        setUser({});
-    }
-
-    const handleReligion = (e) => {
-        setReligionfriendly(e.value);
-        setUser({});
-    }
-
-    const handleSexualOrientation = (e) => {
-        setSexualOrientation(e.value);
-        setUser({});
+        //setUser({});
     }
 
     const handleAlcohol = (e) => {
         setAlcoholUsage(e.value);
-        setUser({})
+        //setUser({})
     }
 
     const handleDrugs = (e) => {
         setDrugUsage(e.value);
-        setUser({})
+        //setUser({})
     }
 
     const handleSmoking = (e) => {
         setSmokingUsage(e.value);
-        setUser({})
+        //setUser({})
     }
 
     const handleLGBTQ = (e) => {
         setLGBTQfriendlly(e.value);
-        setUser({})
+        //setUser({})
     }
 
     const handleReligion = (e) => {
         setReligionfriendly(e.value);
-        setUser({})
+        //setUser({})
     }
 
     const handleSexualOrientation = (e) => {
         setSexualOrientation(e.value);
-        setUser({})
+        //setUser({})
     }
 
     const handlePolitics = (e) => {
         setPolitics(e.value);
-        setUser({})
+        //setUser({})
     }
 
     const handleSocialActiveness = (e) => {
         setSocialActiveness(e.value);
-        setUser({})
+        //setUser({})
     }
 
     const handleExtras = (e) => {
-        setExtraOrSpecificRequirements(e.value);
-        setUser({})
+        setExtraOrSpecificRequirements(e.value); //e.target.value for text boxes 
+        //setUser({})
     }
 
     const handleGenderInclusive = (e) => {
         setGenderInclusiveHousing(e.value);
-        setUser({})
+        //setUser({})
     }
 
+    //console.log(pets);
 
 
     return(
@@ -137,12 +131,12 @@ export default function apartmentPreferencesForm({}) {
             <div className = 'input-container'>
                 <label>
                     Any Pets?<br /> 
-                    <Dropdown value={pets} onChange={handlePets} options={
+                    <Dropdown value={pets} onChange={(e) => setPets(e.value)} options={
                         ['yes',
                          'no',
                          'do not mind']
                          }
-                         optionLabel='pets' placeholder='Select a preferred pet preferece' className="pet-pref" />
+                        placeholder='Select a preferred pet preferece' className="w-full md:w-14rem" />
                 </label>
             </div>
 
@@ -154,7 +148,7 @@ export default function apartmentPreferencesForm({}) {
                          'no',
                          'do not mind']
                          }
-                         optionLabel='alcohol' placeholder='Select a preferred alcohol preferece' className="alcohol-pref" />
+                        placeholder='Select a preferred alcohol preferece' className="alcohol-pref" />
                 </label>
             </div>
 
@@ -166,7 +160,7 @@ export default function apartmentPreferencesForm({}) {
                          'no',
                          'do not mind']
                          }
-                         optionLabel='drugs' placeholder='Select a preferred drug preferece' className="drug-pref" />
+                        placeholder='Select a preferred drug preferece' className="drug-pref" />
                 </label>
             </div>
 
@@ -178,7 +172,7 @@ export default function apartmentPreferencesForm({}) {
                          'no',
                          'do not mind']
                          }
-                         optionLabel='smoking' placeholder='Select a preferred smoking preferece' className="smoking-pref" />
+                        placeholder='Select a preferred smoking preferece' className="smoking-pref" />
                 </label>
             </div>
             <div className = 'input-container'>
@@ -189,7 +183,7 @@ export default function apartmentPreferencesForm({}) {
                          'no',
                          'do not mind']
                          }
-                         optionLabel='lgbtq' placeholder='Select a preferred lgbtq preferece' className="lgbtq-pref" />
+                        placeholder='Select a preferred lgbtq preferece' className="lgbtq-pref" />
                 </label>
             </div>
 
@@ -204,7 +198,7 @@ export default function apartmentPreferencesForm({}) {
                          'Islamic',
                          'Other']
                          }
-                         optionLabel='religion' placeholder='Select a preferred religion preferece' className="religion-pref" />
+                        placeholder='Select a preferred religion preferece' className="religion-pref" />
                 </label>
             </div>
 
@@ -217,7 +211,7 @@ export default function apartmentPreferencesForm({}) {
                          'Asexual',
                          'Other']
                          }
-                         optionLabel='Sexual-Orientation' placeholder='Select a preferred sexual-orientation preferece' className="sexual-orientation-pref" />
+                        placeholder='Select a preferred sexual-orientation preferece' className="sexual-orientation-pref" />
                 </label>
             </div>
 
@@ -229,7 +223,7 @@ export default function apartmentPreferencesForm({}) {
                          'Apolitical',
                          'do not mind']
                          }
-                         optionLabel='politics' placeholder='Select a preferred politic preferece' className="politic-pref" />
+                        placeholder='Select a preferred politic preferece' className="politic-pref" />
             </div>
             <div className = 'input-container'>
                 <label>
@@ -239,7 +233,7 @@ export default function apartmentPreferencesForm({}) {
                          'no',
                          'do not mind']
                          }
-                         optionLabel='social-activeness' placeholder='Select a preferred social-activeness preferece' className="social-activeness-pref" />
+                        placeholder='Select a preferred social-activeness preferece' className="social-activeness-pref" />
                 </label>
             </div>
             <div className = 'input-container'>
@@ -248,8 +242,8 @@ export default function apartmentPreferencesForm({}) {
                     <input
                         type="text"
                         className='extra-input'
-                        value={userAgent.extraOrSpecificRequirements}
-                        onChange={(e) => setUser({...user,extraOrSpecificRequirements: e.target.value})}
+                        value={extraOrSpecificRequirements}
+                        onChange={handleExtras}
                     />
                 </label>    
             </div>
@@ -261,7 +255,7 @@ export default function apartmentPreferencesForm({}) {
                          'no',
                          'do not mind']
                          }
-                         optionLabel='gender-inclusive' placeholder='Select a preferred gender-inclusivity preferece' className="gender-inclusivity-pref" />
+                        placeholder='Select a preferred gender-inclusivity preferece' className="gender-inclusivity-pref" />
                 </label>
             </div>
         </form>
