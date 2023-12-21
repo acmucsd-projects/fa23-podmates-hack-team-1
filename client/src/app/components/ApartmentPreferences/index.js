@@ -14,11 +14,39 @@ import { redirect } from "next/dist/server/api-utils";
 import { Dropdown } from 'primereact/dropdown';
 
 
-export default function ApartmentPreferencesForm({}) {
+export default function ApartmentPreferencesForm() {
     /**
      * implement: everything :pepehands:
      * 
      */
+    const[user, setUser] = UseState({
+        password: '',
+        email: '',
+        name: '',
+        birthday: '',
+        image: [],
+        pronouns: {value: '', isVisible: false},
+        gender: {value: '', isVisible: false},
+        bio: '',
+        apartmentPreferences: {
+            numberOfDesiredRoomates: '',
+            pets: '',
+            alcoholUsage: '',
+            drugUsage: '',
+            LBGTQfriendly: '',
+            religion: '',
+            sexualOrientation: '',
+            politics: '',
+            socialActiveness: '',
+            extraOrSpecificRequirements: '',
+            genderInclusiveHousing: ''},
+        lifestyle: {},
+        onCampus: {},
+        offCampus: {},
+    });
+
+
+
 
     /** Manages the state of various form fields */
     const[numberOfDesiredRoomates, setNumberOfDesiredRoomates] = useState('');
@@ -26,7 +54,7 @@ export default function ApartmentPreferencesForm({}) {
     const[alcoholUsage, setAlcoholUsage] = useState(false);
     const[drugUsage, setDrugUsage] = useState(false);
     const[smokingUsage, setSmokingUsage] = useState(false);
-    const[LBGTQfriendly, setLGBTQfriendlly] = useState(false);
+    const[LBGTQfriendly, setLGBTQfriendly] = useState(false);
     const[religion, setReligionfriendly] = useState(''); 
     const[sexualOrientation, setSexualOrientation] = useState('');
     const[politics, setPolitics] = useState('');
@@ -34,107 +62,40 @@ export default function ApartmentPreferencesForm({}) {
     const[extraOrSpecificRequirements, setExtraOrSpecificRequirements] = useState('');
     const[genderInclusiveHousing, setGenderInclusiveHousing] = useState('');
 
-    /** Handles user interaction and updates the current state of the element into current state variables*/
-    const handleNumberOfDesiredRoomatesSelection = (e) => {
-        setNumberOfDesiredRoomates(e.value); //e.target.value 
-        //setUser({});
-    }
-    const handlePets = (e) => {
-        setPets(e.value);
-        //setUser({});
-    }
-    const handlealcoholUsage = (e) => {
-        setAlcoholUsage(e.value);
-        //setUser({});
-    }
-    const handledrugUsage = (e) => {
-        setDrugUsage(e.value);
-        //setUser({});
-    }
-
-    const handleSmokingUsage = (e) => {
-        setSmokingUsage(e.value);
-        //setUser({});
-    }
-
-    const handleLBGTQFriendly = (e) => {
-        setLGBTQfriendlly(e.value);
-        //setUser({});
-    }
-
-    const handleAlcohol = (e) => {
-        setAlcoholUsage(e.value);
-        //setUser({})
-    }
-
-    const handleDrugs = (e) => {
-        setDrugUsage(e.value);
-        //setUser({})
-    }
-
-    const handleSmoking = (e) => {
-        setSmokingUsage(e.value);
-        //setUser({})
-    }
-
-    const handleLGBTQ = (e) => {
-        setLGBTQfriendlly(e.value);
-        //setUser({})
-    }
-
-    const handleReligion = (e) => {
-        setReligionfriendly(e.value);
-        //setUser({})
-    }
-
-    const handleSexualOrientation = (e) => {
-        setSexualOrientation(e.value);
-        //setUser({})
-    }
-
-    const handlePolitics = (e) => {
-        setPolitics(e.value);
-        //setUser({})
-    }
-
-    const handleSocialActiveness = (e) => {
-        setSocialActiveness(e.value);
-        //setUser({})
-    }
-
-    const handleExtras = (e) => {
-        setExtraOrSpecificRequirements(e.value); //e.target.value for text boxes 
-        //setUser({})
-    }
-
-    const handleGenderInclusive = (e) => {
-        setGenderInclusiveHousing(e.value);
-        //setUser({})
-    }
 
     //console.log(pets);
-
 
     return(
         //use input-container for css styling later
         <form>
             {/* i fix later */}
-            {/* <div className ='input-container'>
+            { <div className ='input-container'>
                 <label>
                     Number Of Desired Roomates<br />
-                    !<InputText
-                        value =
-                    />
+                    <Drowpdown value ={user.apartmentPreferences.numberOfDesiredRoomates} onChange= {(e) => setUser({
+                    ...user, apartmentPreferences: {...user.apartmentPreferences, numberOfDesiredRoomates: e.value}
+                    })
+                    } 
+                    options = {
+                        ['1',
+                         '2',
+                         '3+']
+                    } 
+                        placeholder= 'Select the desired number of roommates' className="w-full md:w-14rem" />
                 </label>
-            </div> */}
+            </div> }
          
             <div className = 'input-container'>
                 <label>
                     Any Pets?<br /> 
-                    <Dropdown value={pets} onChange={(e) => setPets(e.value)} options={
+                    <Dropdown value={user.apartmentPreferences.pets} onChange={(e) => setUser({
+                    ...user, apartmentPreferences: {...user.apartmentPreferences, pets: e.value}
+                    })
+                    } 
+                    options={
                         ['yes',
                          'no',
-                         'do not mind']
+                         'no preference'] //no preference instaad of do not mind? i feel like do not mind and yes are same thing
                          }
                         placeholder='Select a preferred pet preferece' className="w-full md:w-14rem" />
                 </label>
@@ -143,54 +104,74 @@ export default function ApartmentPreferencesForm({}) {
             <div className = 'input-container'>
                 <label>
                     Alcohol Usage<br />
-                    <Dropdown value={alcoholUsage} onChange={handleAlcohol} options={
+                    <Dropdown value={user.apartmentPreferences.alcoholUsage} onChange={(e) => setUser({
+                    ...user, apartmentPreferences: {...user.apartmentPreferences, alcoholUsage: e.value}
+                    })
+                    } 
+                    options={
                         ['yes',
                          'no',
-                         'do not mind']
+                         'no preference']
                          }
-                        placeholder='Select a preferred alcohol preferece' className="alcohol-pref" />
+                        placeholder='Select a preferred alcohol preferece' className="w-full md:w-14rem" />
                 </label>
             </div>
 
             <div className = 'input-container'>
                 <label>
                     Drug Usage<br />
-                    <Dropdown value={drugUsage} onChange={handleDrugs} options={
+                    <Dropdown value={user.apartmentPreferences.drugUsage} onChange={(e) => setUser({
+                    ...user, apartmentPreferences: {...user.apartmentPreferences, drugUsage: e.value}
+                    })
+                    } 
+                    options={
                         ['yes',
                          'no',
-                         'do not mind']
+                         'no preference']
                          }
-                        placeholder='Select a preferred drug preferece' className="drug-pref" />
+                        placeholder='Select a preferred drug preferece' className="w-full md:w-14rem" />
                 </label>
             </div>
 
             <div>
                 <label>
                     Smoking Usage<br />
-                    <Dropdown value={smokingUsage} onChange={handleSmoking} options={
+                    <Dropdown value={user.apartmentPreferences.smokingUsage} onChange={(e) => setUser({
+                    ...user, apartmentPreferences: {...user.apartmentPreferences, smokingUsage: e.value}
+                    })
+                    } 
+                    options={
                         ['yes',
                          'no',
-                         'do not mind']
+                         'no preference']
                          }
-                        placeholder='Select a preferred smoking preferece' className="smoking-pref" />
+                        placeholder='Select a preferred smoking preferece' className="w-full md:w-14rem" />
                 </label>
             </div>
             <div className = 'input-container'>
                 <label>
                     LBGTQ friendly<br />
-                    <Dropdown value={LBGTQfriendly} onChange={handleLGBTQ} options={
+                    <Dropdown value={user.apartmentPreferences.LBGTQfriendly} onChange={(e) => setUser({
+                    ...user, apartmentPreferences: {...user.apartmentPreferences, LBGTQfriendly: e.value}
+                    })
+                    } 
+                    options={
                         ['yes',
                          'no',
-                         'do not mind']
+                         'no preference']
                          }
-                        placeholder='Select a preferred lgbtq preferece' className="lgbtq-pref" />
+                        placeholder='Select a preferred lgbtq preferece' className="w-full md:w-14rem" />
                 </label>
             </div>
 
             <div className = 'input-container'>
                 <label>
                     Religion<br />
-                    <Dropdown value={religion} onChange={handleReligion} options={
+                    <Dropdown value={user.apartmentPreferences.religion} onChange={(e) => setUser ({
+                    ...user, apartmentPreferences: {...user.apartmentPreferences, religion: e.value}
+                    })
+                    } 
+                    options={
                         ['non-religious',
                          'Christian',
                          'Buddhist',
@@ -198,42 +179,62 @@ export default function ApartmentPreferencesForm({}) {
                          'Islamic',
                          'Other']
                          }
-                        placeholder='Select a preferred religion preferece' className="religion-pref" />
+                        placeholder='Select a preferred religion preferece' className="w-full md:w-14rem" />
                 </label>
             </div>
 
             <div className = 'input-container'>
                 <label>
                     Sexual Orientation<br />
-                    <Dropdown value={sexualOrientation} onChange={handleSexualOrientation} options={
+                    <Dropdown value={user.apartmentPreferences.sexualOrientation} onChange={(e) => setUser({
+                    ...user, apartmentPreferences: {...user.apartmentPreferences, sexualOrientation: e.value}
+                    })
+                    } 
+                    options={
                         ['Gay',
                          'Straight',
                          'Asexual',
-                         'Other']
+                         'Lesbian',
+                         'Bisexual',
+                         'Transgender',
+                         'Pansexual',
+                         'Queer',
+                         'Other',
+                         'rather not say']
                          }
-                        placeholder='Select a preferred sexual-orientation preferece' className="sexual-orientation-pref" />
+                        placeholder='Select a preferred sexual-orientation preferece' className="w-full md:w-14rem" />
                 </label>
             </div>
 
             <div className = 'input-container'>
                 Politics<br />
-                <Dropdown value={politics} onChange={handlePolitics} options={
+                <Dropdown value={user.apartmentPreferences.politics} onChange={(e) => setUser({
+                ...user, apartmentPreferences: {...user.apartmentPreferences, politics: e.value}
+                })
+                } 
+                options={
                         ['Republican',
                          'Democratic',
                          'Apolitical',
-                         'do not mind']
+                         'other', 
+                         'rather not say'] //other?
                          }
-                        placeholder='Select a preferred politic preferece' className="politic-pref" />
+                        placeholder='Select a preferred politic preferece' className="w-full md:w-14rem" />
             </div>
             <div className = 'input-container'>
                 <label>
                     Social Activity<br />
-                    <Dropdown value={socialActiveness} onChange={handleSocialActiveness} options={
-                        ['yes', //i dont know what to put here
-                         'no',
-                         'do not mind']
+                    <Dropdown value={user.apartmentPreferences.socialActiveness} onChange={(e) => setUser({
+                    ...user, apartmentPreferences: {...user.apartmentPreferences, socialActiveness: e.value}
+                    })
+                    } 
+                    options={
+                        ['I have a low social battery', //i dont know what to put here
+                         'I have a decent social battery',
+                         'I have a strong social battery',
+                         'other']
                          }
-                        placeholder='Select a preferred social-activeness preferece' className="social-activeness-pref" />
+                        placeholder='Select a preferred social-activeness preference' className="w-full md:w-14rem" />
                 </label>
             </div>
             <div className = 'input-container'>
@@ -242,20 +243,27 @@ export default function ApartmentPreferencesForm({}) {
                     <input
                         type="text"
                         className='extra-input'
-                        value={extraOrSpecificRequirements}
-                        onChange={handleExtras}
+                        value={user.apartmentPreferences.extraOrSpecificRequirements}
+                        onChange={(e) = setUser({
+                        ...user, apartmentPreferences: {...user.apartmentPreferences, extraOrSpecificRequirements: e.value}
+                        })
+                        }
                     />
                 </label>    
             </div>
             <div className = 'input-container'>
                 <label>
                     Gender Inclusive Housing<br />
-                    <Dropdown value={genderInclusiveHousing} onChange={handleGenderInclusive} options={
+                    <Dropdown value={user.apartmentPreferences.genderInclusiveHousing} onChange={(e) => setUser({
+                    ...user, apartmentPreferences: {...user.apartmentPreferences, genderInclusiveHousing: e.value}
+                    })
+                    } 
+                    options={
                         ['yes',
                          'no',
-                         'do not mind']
+                         'no preference']
                          }
-                        placeholder='Select a preferred gender-inclusivity preferece' className="gender-inclusivity-pref" />
+                        placeholder='Select a preferred gender-inclusivity preferece' className="w-full md:w-14rem" />
                 </label>
             </div>
         </form>
