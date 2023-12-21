@@ -23,7 +23,7 @@ export default function ProfileSignUpForm({ user, setUser, setShowPopUp, setPopU
         need a google sign up button!
         we should get the user's email & birthday information from this! (if possible)
     */
-    const [hidePassword, setHidePassword] = useState(true); 
+    const [hidePassword, setHidePassword] = useState(true);
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [characterCounter, setCharacterCounter] = useState(null);
@@ -45,29 +45,29 @@ export default function ProfileSignUpForm({ user, setUser, setShowPopUp, setPopU
     console.log(user);
 
     const handleBioInput = (e) => {
-        setUser({...user, bio: e.target.value});
+        setUser({ ...user, bio: e.target.value });
         setCharacterCounter(200 - e.target.value.length);
     }
 
     const handleGenderSelection = (e) => {
         setSelectGender(e.value);
-        if(e.value == 'More') {
+        if (e.value == 'More') {
             setShowPopUp(true);
             setPopUpType('gender');
         }
         else {
-            setUser({...user, gender: {...user.gender, value: e.value}});
+            setUser({ ...user, gender: { ...user.gender, value: e.value } });
         }
     }
 
     const handlePronounsSelection = (e) => {
         setSelectPronouns(e.value);
-        if(e.value == 'More') {
+        if (e.value == 'More') {
             setShowPopUp(true);
             setPopUpType('pronouns');
         }
         else {
-            setUser({...user, pronouns: {...user.pronouns, value: e.value}});
+            setUser({ ...user, pronouns: { ...user.pronouns, value: e.value } });
         }
     }
 
@@ -80,7 +80,7 @@ export default function ProfileSignUpForm({ user, setUser, setShowPopUp, setPopU
     /*
     need to move about you section into a different section..... running out of room on here!
      */
-    return(
+    return (
         <>
         <p>Your current email is set to <b>{user.email}</b>.</p>
             <form>
@@ -92,28 +92,28 @@ export default function ProfileSignUpForm({ user, setUser, setShowPopUp, setPopU
                             className='sign-up-input'
                             name='name'
                             value={user.name}
-                            onChange={(e) => setUser({...user, name: e.target.value})}
+                            onChange={(e) => setUser({ ...user, name: e.target.value })}
                         />
                     </label>
                 </div>
 
                 <div className='input-container'>
                     <label>
-                        Password <br/>
+                        Password <br />
                         <div className='password-input-container'>
-                            <input 
-                                type={hidePassword ? "password" : "text"} 
-                                className='sign-up-input' 
-                                value={newPassword} 
+                            <input
+                                type={hidePassword ? "password" : "text"}
+                                className='sign-up-input'
+                                value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
                             />
 
-                            <button 
-                                type='toggle-btn' 
+                            <button
+                                type='toggle-btn'
                                 className="visibility-btn"
                                 onClick={handlePasswordVisibility}
                             >
-                                <FontAwesomeIcon icon={hidePassword ? faEye : faEyeSlash} size="xl"/>
+                                <FontAwesomeIcon icon={hidePassword ? faEye : faEyeSlash} size="xl" />
                             </button>
                         </div>
                     </label>
@@ -121,21 +121,21 @@ export default function ProfileSignUpForm({ user, setUser, setShowPopUp, setPopU
 
                 <div className='input-container'>
                     <label>
-                        Confirm password <br/>
+                        Confirm password <br />
                         <div className='password-input-container'>
-                            <input 
+                            <input
                                 type="password"
-                                className='sign-up-input' 
-                                value={confirmPassword} 
+                                className='sign-up-input'
+                                value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                             />
                         </div>
                     </label>
                 </div>
 
-                <div>
+                <div className="input-container">
                     <label>
-                        Birthday<br/>
+                        Birthday
                         <p className={!user.birthday ? 'red' : null}>{!user.birthday ? '* User must be at least 18 years old. ': null}</p>
                         <Calendar className={!user.birthday ? 'p-invalid' : null} value={user.birthday} onChange={(e) => setUser({...user, birthday: e.value})} maxDate={maxDate} showIcon />
                     </label>
@@ -159,22 +159,22 @@ export default function ProfileSignUpForm({ user, setUser, setShowPopUp, setPopU
 
                 <div className="input-container">
                     <label>
-                        Gender <br/>
+                        Gender <br />
                         <SelectButton value={selectGender} onChange={handleGenderSelection} options={['Man', 'Woman', 'More']} />
                     </label>
                     <label>
-                        <Checkbox onChange={(e) => (console.log(e.target.value), setUser({...user, gender: {...user.gender, isVisible: !user.gender.isVisible}}))} value={user.gender.isVisible} checked={user.gender.isVisible}></Checkbox>
+                        <Checkbox onChange={(e) => (console.log(e.target.value), setUser({ ...user, gender: { ...user.gender, isVisible: !user.gender.isVisible } }))} value={user.gender.isVisible} checked={user.gender.isVisible}></Checkbox>
                         Show on profile?
                     </label>
                 </div>
 
                 <div className="input-container">
                     <label>
-                        Pronouns <br/>
+                        Pronouns <br />
                         <SelectButton className="pronouns-btnset" value={selectPronouns} onChange={handlePronounsSelection} options={['he/him', 'she/her', 'they/them', 'More']} />
                     </label>
                     <label>
-                        <Checkbox onChange={(e) => (console.log(e.target.value), setUser({...user, pronouns: {...user.pronouns, isVisible: !user.pronouns.isVisible}}))} value={user.pronouns.isVisible} checked={user.pronouns.isVisible}></Checkbox>
+                        <Checkbox onChange={(e) => (console.log(e.target.value), setUser({ ...user, pronouns: { ...user.pronouns, isVisible: !user.pronouns.isVisible } }))} value={user.pronouns.isVisible} checked={user.pronouns.isVisible}></Checkbox>
                         Show on profile?
                     </label>
                 </div>

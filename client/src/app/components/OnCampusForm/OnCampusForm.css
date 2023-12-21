@@ -1,5 +1,5 @@
 form {
-    padding-top: 60px;
+    padding-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,10 +16,25 @@ label {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+
 }
 
 .input-container {
-    margin-bottom: 30px;
     text-align: left;
     width: 100%;
+}
+
+.question {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.answer {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.p-dropdown {
+    width: 100%;
+    text-align: left;
 }
