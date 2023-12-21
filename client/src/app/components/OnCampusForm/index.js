@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { SelectButton } from 'primereact/selectbutton';
 import { Checkbox } from 'primereact/checkbox';
+import { InputText } from 'primereact/checkbox';
+
 import { Dropdown } from 'primereact/dropdown';
 
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
@@ -22,6 +24,19 @@ export default function OnCmpusForm({ user, setUser, setShowPopUp, setPopUpType 
     are you looking for a roommate or housemates?   
     */
 
+    // buildingPref: {
+    //     type: String,
+    //     required: false,
+    // },
+    // ucsdCollege: {
+    //     type: String,
+    //     required: false,
+    // },
+    // roommateSearch: {
+    //     type: Boolean,
+    //     required: false
+    // }
+
     const [selectHousing, setSelectHousing] = useState('');
     const [selectCollege, setSelectCollege] = useState('');
     const [BoolRoommate, setBoolRoommate] = useState('');
@@ -39,17 +54,18 @@ export default function OnCmpusForm({ user, setUser, setShowPopUp, setPopUpType 
 
     const handleHousingSelection = (e) => {
         setSelectHousing(e.value);
-        setUser({})
+        setUser(prevUser => ({ ...prevUser, buildingPref: e.target.value }));
     }
 
     const handleCollegeSelection = (e) => {
         setSelectCollege(e.value);
-        setUser({})
+        setUser(prevUser => ({ ...prevUser, ucsdCollege: e.target.value }));
     }
 
     const handleRoommateBool = (e) => {
         setBoolRoommate(e.value);
-        setUser({})
+        const roommateSearchValue = e.value === 'Yes';
+        setUser(prevUser => ({ ...prevUser, roommateSearch: roommateSearchValue }));
     }
 
     return (
@@ -57,25 +73,26 @@ export default function OnCmpusForm({ user, setUser, setShowPopUp, setPopUpType 
             <form>
                 <div className='input-container'>
                     <label>
-                        Housing Type<br />
-                        <SelectButton value={selectHousing} onChange={handleHousingSelection} options={['Residence Hall', 'Apartment']} />
+                        <span className="question">Housing Type<br /></span>
+                        <span className="answer"><SelectButton className="selectbutton" value={selectHousing} onChange={handleHousingSelection} options={['Residence Hall', 'Apartment']} /></span>
                     </label>
                 </div>
 
                 <div className='input-container'>
                     <label>
-                        College <br />
-                        <Dropdown value={selectCollege} onChange={handleCollegeSelection} options={Colleges}
-                            placeholder="Select a College" className="w-full md:w-14rem" />
+                        <span className="question">College <br /></span>
+                        <span className="answer"><Dropdown value={selectCollege} onChange={handleCollegeSelection} options={Colleges}
+                            placeholder="Select a College" className="w-full md:w-14rem" /></span>
                     </label>
                 </div>
 
                 <div className='input-container'>
                     <label>
-                        Are you looking for a roommate or housemates? <br />
-                        <SelectButton value={BoolRoommate} onChange={handleRoommateBool} options={['Yes', 'No']} />
+                        <span className="question">Are you looking for a roommate or housemates? <br /></span>
+                        <span className="answer"><SelectButton value={BoolRoommate} onChange={handleRoommateBool} options={['Yes', 'No']} /></span>
                     </label>
                 </div>
+
 
             </form>
         </>
