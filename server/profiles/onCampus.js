@@ -10,8 +10,28 @@ const onCampus = new mongoose.Schema(
             type: String,
             required: false,
         },
-        roommateSearch: {
-            type: Boolean,
+        roomType: {
+            type: String, //double, single, triple
+            required: true,
+        },
+        roommateType: {
+            type: String, //are you looking for suitemates or roommates? 
+            required: true
+        },
+        numberofDesiredRoommates: {
+            type: Number,
+            required: false
+        },
+        numberofDesiredSuitemates: {
+            type: Number,
+            required: false
+        },
+        suitematePreference: {
+            type: String,
+            required: false
+        },
+        roommatePreference: {
+            type: String,
             required: false
         }
     }
