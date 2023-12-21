@@ -11,6 +11,7 @@ const UserProfileSchema = new mongoose.Schema(
         //add user/password
         username: {
             type: String,
+            unique: true,
             required: true,
             message: 'Please reenter your email you used to sign up previously as your username'
         },

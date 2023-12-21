@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const usersRouter = require('./routes/users');
 const e = require('express');
-const { default: axios } = require('axios');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const GoogleStrategy = require('passport-google-oauth20');
@@ -13,6 +12,7 @@ const UserProfile = require('./profiles/userProfile');
 const apiRouter = require('./routes/apis');
 const app = express();
 const cors = require('cors');
+
 const CustomStrategy = require('passport-custom');
 app.use(cors());
 app.use(logger('dev'));
@@ -23,11 +23,15 @@ app.use('/users', usersRouter); //I think this is how we are able to communicate
 app.use('/api', apiRouter); 
 //this is a middleware, basically like useEffect(), runs everytime a request is heard, it is mounted with app use
 
-var user;
+const corsConfig = {
+  credentials: true,
+  origin: ['http://localhost:3000', 'https://oauth2.googleapis.com']
+};
+app.use(cors(corsConfig));
 
 passport.use(new LocalStrategy(async (username, password, done) => {
   try {
-    user = await UserProfile.findOne({ username: username });
+    let user = await UserProfile.findOne({ username: username });
     
     if (user === null) {
       return done(null, false);
@@ -47,11 +51,9 @@ passport.use(new LocalStrategy(async (username, password, done) => {
 }));
 
 
-
-
 passport.use(new CustomStrategy(async (req, done) => {
     try{
-      user = await UserProfile.findOne({username: (req.query.username + '@ucsd.edu')});
+      let user = await UserProfile.findOne({username: (req.query.username + '@ucsd.edu')});
       if(!(user === null)){
         return done(null, user);
       } else {
@@ -65,8 +67,8 @@ passport.use(new CustomStrategy(async (req, done) => {
 
 app.use(session({
   secret: '12344dhfiadjsfoijoiejoiffjas',
-  resave: false,
-  saveUninitialized: false
+  resave: true,
+  saveUninitialized: true
 }))
 app.use(passport.initialize());
 app.use(passport.session());  
@@ -78,25 +80,51 @@ passport.serializeUser((user, done) => { //these two methods stores and reads us
 
 passport.deserializeUser(async (id, done) => {
   try {
-    const user = await UserProfile.findById(id);
+    let user = await UserProfile.findById(id);
     done(null, user);
   } catch (error) {
     done(error);
   }
 });
 
-app.get('/auth/user', (req, res) =>{
-  res.send(user);
-})
 
 app.get('/auth', passport.authenticate(['local'], {
-  successRedirect: '/auth/user'
+  successRedirect: '/'
 }))
 
 app.get('/auth/google', passport.authenticate(['custom'], {
-  successRedirect: '/auth/user'
+  successRedirect: '/'
 }))
 
+app.get('/isAuth', checkAuthentication, (req,res) => {
+  res.redirect('/');
+})
+
+app.post('/reg', (req, res) => {
+  UserProfile.findOne({username: req.query.username}).then((user) => {
+    if(user) {
+      return res.status(400).send('this user has already been saved into this account');
+    } else {
+      const newUser = new UserProfile({username: req.query.username, password: req.query.password});
+      newUser.save();
+      return res.status(200).send("success");
+    }
+  })
+} 
+)  
+
+app.get('/', (req, res) => {
+  res.send('');
+})
+function checkAuthentication(req,res){
+  if(req.isAuthenticated()){
+      res.send(req.user);
+      res.status(200);
+      console.log('isAuthenticated');
+  } else if(req.cookies === null){
+      res.status(403);
+  }
+}
 dotenv.config();
 
 
