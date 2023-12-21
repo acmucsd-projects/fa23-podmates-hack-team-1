@@ -5,6 +5,7 @@ import './SignUp.css'
 import SelectionPopUp from '../components/SignUp/SelectionPopUp';
 import Link from 'next/link';
 import GoogleSignUp from '../components/SignUp/GoogleSignUpForm/SignUp';
+import OnCmpusForm from '../components/OnCampusForm';
 export default function SignUp() {
     const [user, setUser] = useState({
         password: '',

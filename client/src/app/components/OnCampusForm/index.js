@@ -16,7 +16,7 @@ import Login from "../GoogleSignIn/Login";
 import './OnCampusForm.css'
 
 
-export default function OnCmpusForm({ user, setUser, setShowPopUp, setPopUpType }) {
+export default function OnCmpusForm({ user, setUser }) {
     /*
     should ask for:
     housing type Residence Hall Apartment
@@ -54,18 +54,18 @@ export default function OnCmpusForm({ user, setUser, setShowPopUp, setPopUpType 
 
     const handleHousingSelection = (e) => {
         setSelectHousing(e.value);
-        setUser(prevUser => ({ ...prevUser, buildingPref: e.target.value }));
+        setUser(e => ({ ...user, buildingPref: e.value }));
     }
 
     const handleCollegeSelection = (e) => {
         setSelectCollege(e.value);
-        setUser(prevUser => ({ ...prevUser, ucsdCollege: e.target.value }));
+        setUser(e => ({ ...user, ucsdCollege: e.value }));
     }
 
     const handleRoommateBool = (e) => {
         setBoolRoommate(e.value);
         const roommateSearchValue = e.value === 'Yes';
-        setUser(prevUser => ({ ...prevUser, roommateSearch: roommateSearchValue }));
+        setUser(e => ({ ...user, roommateSearch: roommateSearchValue }));
     }
 
     return (

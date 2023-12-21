@@ -24,6 +24,10 @@ label {
     padding: 0.75rem 0.7rem;
 }
 
+.p-calendar {
+    padding-bottom: 10px;
+}
+
 .p-checkbox {
     margin-right: 10px;
 }
