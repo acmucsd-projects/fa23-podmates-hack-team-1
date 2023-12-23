@@ -6,7 +6,7 @@ import { SelectButton } from 'primereact/selectbutton';
 import { Checkbox } from 'primereact/checkbox';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import './ProfileSignUpForm.css'
-
+import { Calendar } from 'primereact/calendar';
 export default function ProfileSignUpForm({ user, setUser, setShowPopUp, setPopUpType }) {
     /*
         should ask for:
@@ -29,6 +29,14 @@ export default function ProfileSignUpForm({ user, setUser, setShowPopUp, setPopU
     const [characterCounter, setCharacterCounter] = useState(null);
     const [selectGender, setSelectGender] = useState('');
     const [selectPronouns, setSelectPronouns] = useState('');
+    const [validBirthdayFeedback, setValidBirthdayFeedback] = useState('');
+    
+    let today = new Date();
+    let minDate = new Date();
+    let maxDate = new Date();
+    let year = today.getFullYear();
+    maxDate.setFullYear(year-18);
+    minDate.setFullYear(year-100);
 
     const handlePasswordVisibility = (e) => {
         e.preventDefault();
@@ -63,12 +71,18 @@ export default function ProfileSignUpForm({ user, setUser, setShowPopUp, setPopU
         }
     }
 
+    const handleBirthdayVerification = (e) => {
+        if(e.value) {
+
+        }
+    }
+
     /*
     need to move about you section into a different section..... running out of room on here!
      */
     return (
         <>
-            <p>Your current email is set to {user.email}.</p>
+        <p>Your current email is set to <b>{user.email}</b>.</p>
             <form>
                 <div className='input-container'>
                     <label>
@@ -119,6 +133,14 @@ export default function ProfileSignUpForm({ user, setUser, setShowPopUp, setPopU
                     </label>
                 </div>
 
+                <div className="input-container">
+                    <label>
+                        Birthday
+                        <p className={!user.birthday ? 'red' : null}>{!user.birthday ? '* User must be at least 18 years old. ': null}</p>
+                        <Calendar className={!user.birthday ? 'p-invalid' : null} value={user.birthday} onChange={(e) => setUser({...user, birthday: e.value})} maxDate={maxDate} showIcon />
+                    </label>
+                </div>
+
                 {/* <div className="input-container">
                     <label>
                         About you <br/>
@@ -156,7 +178,6 @@ export default function ProfileSignUpForm({ user, setUser, setShowPopUp, setPopU
                         Show on profile?
                     </label>
                 </div>
-
             </form>
         </>
     );

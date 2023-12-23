@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { SelectButton } from 'primereact/selectbutton';
 import { Checkbox } from 'primereact/checkbox';
+import { Calendar } from 'primereact/calendar';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import { Dropdown } from 'primereact/dropdown';
 import { useRouter } from 'next/navigation';
@@ -99,7 +100,8 @@ export default function OffCmpusForm({ user, setUser, setShowPopUp, setPopUpType
                 <div className='input-container'>
                     <label>
                         Lease Start Date <br />
-                        {/* maybe import a calendar?*/}
+                        <Calendar value={date} onChange={(e) => setDate(e.value)} view="month" dateFormat="mm/yy" placeholder="Month" className="w-full md:w-14rem" />
+                        <Calendar value={date} onChange={(e) => setDate(e.value)} view="year" dateFormat="yy" placeholder="Year" className="w-full md:w-14rem" />
                     </label>
 
                 </div>
@@ -107,9 +109,9 @@ export default function OffCmpusForm({ user, setUser, setShowPopUp, setPopUpType
                 <div className='input-container'>
                     <label>
                         Lease End Date <br />
-                        {/* maybe import a calendar?*/}
+                        <Calendar value={date} onChange={(e) => setDate(e.value)} view="month" dateFormat="mm/yy" placeholder="Month" className="w-full md:w-14rem" />
+                        <Calendar value={date} onChange={(e) => setDate(e.value)} view="year" dateFormat="yy" placeholder="Year" className="w-full md:w-14rem" />
                     </label>
-
                 </div>
 
             </form>

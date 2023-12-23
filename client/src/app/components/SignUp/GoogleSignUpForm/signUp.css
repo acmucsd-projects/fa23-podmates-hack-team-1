@@ -105,3 +105,8 @@
     background-color: #001d35;
     opacity: 8%;
   }
+.verification-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

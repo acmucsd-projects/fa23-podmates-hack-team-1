@@ -42,7 +42,7 @@ export default function GoogleSignUpForm({ user, setUser, setIsGoogled }) {
 
 
   return (
-    <div>
+    <div className='verification-container'>
         <h1>Student Verification</h1>
         <p>Log in to your UC San Diego email to continue.</p>
         {feedback ? <p className="feedback">{feedback}</p> : null}

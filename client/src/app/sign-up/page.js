@@ -5,13 +5,14 @@ import './SignUp.css'
 import SelectionPopUp from '../components/SignUp/SelectionPopUp';
 import Link from 'next/link';
 import GoogleSignUp from '../components/SignUp/GoogleSignUpForm/SignUp';
+import OnCmpusForm from '../components/OnCampusForm';
 export default function SignUp() {
     const [user, setUser] = useState({
         password: '',
         email: '',
         name: '',
         // age in the user profile schema should be changed to birthday
-        birthday: '',
+        birthday: null,
         // images in user profile schema should be changed to a list
         image: [],
         pronouns: {value: '', isVisible: false},
@@ -22,6 +23,7 @@ export default function SignUp() {
         onCampus: {},
         offCampus: {}
     });
+
     const [showPopUp, setShowPopUp] = useState(false);
     const [popUpType, setPopUpType] = useState('pronouns');
     const [currentStep, setCurrentStep] = useState(1);
@@ -39,6 +41,7 @@ export default function SignUp() {
     }
     console.log('Show pop up: ', showPopUp);
     console.log('Pop up type: ', popUpType);
+    console.log('user: ', user);
     return(
         <div>
                {showPopUp && (
@@ -57,8 +60,16 @@ export default function SignUp() {
                     </div>
                     {
                        isGoogled ?
-                        <ProfileSignUpForm user={user} setUser={setUser} setShowPopUp={setShowPopUp} setPopUpType={setPopUpType}/>
-                       : <GoogleSignUp user={user} setUser={setUser} isGoogled={isGoogled} setIsGoogled={setIsGoogled} />
+                        <>
+                            <h1>Create an account</h1>
+                            <ProfileSignUpForm user={user} setUser={setUser} setShowPopUp={setShowPopUp} setPopUpType={setPopUpType}/>
+                        </>
+                       :
+                       <>
+                        <GoogleSignUp user={user} setUser={setUser} isGoogled={isGoogled} setIsGoogled={setIsGoogled} />
+                       </> 
+
+                       
                     }
                 </div>
             </div>
