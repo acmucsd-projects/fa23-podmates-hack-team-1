@@ -12,10 +12,10 @@ export default function Test() {
                 <></>
             </div>
             <div className="right-container">
-                {/* <h1>On-Campus Housing</h1> */}
-                <h1>Off-Campus Housing</h1>
-                {/* <OnCampusForm /> */}
-                <OffCmpusForm />
+                <h1>On-Campus Housing</h1>
+                {/* <h1>Off-Campus Housing</h1> */}
+                <OnCampusForm />
+                {/* <OffCmpusForm /> */}
             </div>
         </div>
     );

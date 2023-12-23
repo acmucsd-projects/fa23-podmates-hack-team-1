@@ -92,13 +92,7 @@ export default function OffCmpusForm({ user, setUser, setShowPopUp, setPopUpType
                 <div className='input-container'>
                     <label>
                         Are you trying to join/create a group or find someone to fill a space? <br />
-                        <input
-                            type='text'
-                            className='sign-up-input'
-                            name='name'
-
-                            onChange={(e) => setUser({ ...user, name: e.target.value })}
-                        />
+                        <span className="answer"><SelectButton className="selectbutton" value={selectGroupType} onChange={handleGroupTypeSelection} options={['Group', 'Finding People']} /></span>
                     </label>
                 </div>
 
