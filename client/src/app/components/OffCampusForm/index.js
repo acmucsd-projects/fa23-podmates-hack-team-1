@@ -25,6 +25,7 @@ export default function OffCmpusForm({ user, setUser, setShowPopUp, setPopUpType
     const [selectBudget, setSelectBudget] = useState('');
     const [selectDistance, setSelectDistance] = useState('');
     const [selectGroupType, setSelectGroupType] = useState('');
+    const [selectLookingForResident, setLookingForResident] = useState('');
     const [selectLeaseStart, setSelectLeaseStart] = useState('');
     const [selectLeaseEnd, setSelectLeaseEnd] = useState('');
 
@@ -32,27 +33,34 @@ export default function OffCmpusForm({ user, setUser, setShowPopUp, setPopUpType
 
     const handleBudgetSelection = (e) => {
         setSelectBudget(e.value);
-        setUser({})
+        setUser(e => ({ ...user, budget: e.value }))
     }
 
     const handleDistanceSelection = (e) => {
         setSelectDistance(e.value);
-        setUser({})
+        setUser(e => ({ ...user, distanceFromCampus: e.value }))
     }
 
     const handleGroupTypeSelection = (e) => {
         setSelectGroupType(e.value);
-        setUser({})
+        const creatingGroupValue = e.value === 'Yes';
+        setUser(e => ({ ...user, creatingGroup: creatingGroupValue }))
+    }
+
+    const handleLookingForResident = (e) => {
+        setLookingForResident(e.value);
+        const lookingForResidentValue = e.value === 'Yes';
+        setUser(e => ({ ...user, lookingForResident: lookingForResidentValue }))
     }
 
     const handleLeaseStartSelection = (e) => {
         setSelectLeaseStart(e.value);
-        setUser({})
+        setUser(e => ({ ...user, leaseStart: e.value }))
     }
 
     const handleLeaseEndSelection = (e) => {
         setSelectLeaseEnd(e.value);
-        setUser({})
+        setUser(e => ({ ...user, leaseEnd: e.value }))
     }
 
     return (
@@ -60,22 +68,22 @@ export default function OffCmpusForm({ user, setUser, setShowPopUp, setPopUpType
             <form>
                 <div className='input-container'>
                     <label>
-                        Budget<br />
-                        <Dropdown value={selectBudget} onChange={handleBudgetSelection} options={
+                        <span className="question">Budget<br /></span>
+                        <span className="answer"><Dropdown value={selectBudget} onChange={handleBudgetSelection} options={
                             ['Below $800',
                                 '$800 - $1000',
                                 '$1000 - $1200',
                                 '$1200 - $1400',
                                 '$1400 - $1600',
                                 'Above $1600']
-                        } placeholder="Select a preferred budget range" className="w-full md:w-14rem" />
+                        } placeholder="Select a preferred budget range" className="w-full md:w-14rem" /></span>
                     </label>
                 </div>
 
                 <div className='input-container'>
                     <label>
-                        Distance from Campus <br />
-                        <Dropdown value={selectDistance} onChange={handleDistanceSelection} options={
+                        <span className="question">Distance from Campus <br /></span>
+                        <span className="answer"><Dropdown value={selectDistance} onChange={handleDistanceSelection} options={
                             ['Below 1 mile',
                                 '1 - 3 miles',
                                 '3 - 5 miles',
@@ -83,7 +91,7 @@ export default function OffCmpusForm({ user, setUser, setShowPopUp, setPopUpType
                                 '7 - 9 miles',
                                 'Above 9 miles']
                         }
-                            placeholder="Select a preferred distance range" className="w-full md:w-14rem" />
+                            placeholder="Select a preferred distance range" className="w-full md:w-14rem" /></span>
                     </label>
                 </div>
 
@@ -92,25 +100,30 @@ export default function OffCmpusForm({ user, setUser, setShowPopUp, setPopUpType
 
                 <div className='input-container'>
                     <label>
-                        Are you trying to join/create a group or find someone to fill a space? <br />
-                        <span className="answer"><SelectButton className="selectbutton" value={selectGroupType} onChange={handleGroupTypeSelection} options={['Group', 'Finding People']} /></span>
+                        <span className="question">Are you trying to join/create a group? <br /></span>
+                        <span className="answer"><SelectButton className="selectbutton" value={selectGroupType} onChange={handleGroupTypeSelection} options={['Yes', 'No']} /></span>
                     </label>
                 </div>
 
                 <div className='input-container'>
                     <label>
-                        Lease Start Date <br />
-                        <Calendar value={date} onChange={(e) => setDate(e.value)} view="month" dateFormat="mm/yy" placeholder="Month" className="w-full md:w-14rem" />
-                        <Calendar value={date} onChange={(e) => setDate(e.value)} view="year" dateFormat="yy" placeholder="Year" className="w-full md:w-14rem" />
+                        <span className="question">Are you looking for Resident to live with? <br /></span>
+                        <span className="answer"><SelectButton className="selectbutton" value={selectLookingForResident} onChange={handleLookingForResident} options={['Yes', 'No']} /></span>
+                    </label>
+                </div>
+
+                <div className='input-container'>
+                    <label>
+                        <span className="question">Lease Start Date <br /></span>
+                        <span className="answer"><Calendar value={selectLeaseStart} onChange={handleLeaseStartSelection} view="month" dateFormat="mm/yy" placeholder="Select the Start Month" className="w-full md:w-14rem" /></span>
                     </label>
 
                 </div>
 
                 <div className='input-container'>
                     <label>
-                        Lease End Date <br />
-                        <Calendar value={date} onChange={(e) => setDate(e.value)} view="month" dateFormat="mm/yy" placeholder="Month" className="w-full md:w-14rem" />
-                        <Calendar value={date} onChange={(e) => setDate(e.value)} view="year" dateFormat="yy" placeholder="Year" className="w-full md:w-14rem" />
+                        <span className="question">Lease End Date <br /></span>
+                        <span className="answer"><Calendar value={selectLeaseEnd} onChange={handleLeaseEndSelection} view="month" dateFormat="mm/yy" placeholder="Select the End Month" className="w-full md:w-14rem" /></span>
                     </label>
                 </div>
 

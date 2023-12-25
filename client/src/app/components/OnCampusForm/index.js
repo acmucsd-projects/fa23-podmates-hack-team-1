@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { SelectButton } from 'primereact/selectbutton';
 import { Checkbox } from 'primereact/checkbox';
-import { InputText } from 'primereact/checkbox';
+import { InputText } from 'primereact/inputtext';
+
+import { InputTextarea } from 'primereact/inputtextarea';
 
 import { Dropdown } from 'primereact/dropdown';
 
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
+
 
 
 import { useRouter } from 'next/navigation';
@@ -39,7 +42,15 @@ export default function OnCmpusForm({ user, setUser }) {
 
     const [selectHousing, setSelectHousing] = useState('');
     const [selectCollege, setSelectCollege] = useState('');
+    const [selectRoomType, setSelectRoomType] = useState('');
     const [BoolRoommate, setBoolRoommate] = useState('');
+    const [selectRoommateNum, setSelectRoommateNum] = useState('');
+    const [selectSuitemateNum, setSelectSuitemateNum] = useState('');
+    const [selectRoommatePref, setSelectRoommatePref] = useState('');
+    const [selectSuitematePref, setSelectSuitematePref] = useState('');
+
+
+
 
     const Colleges = [
         "Revelle College",
@@ -62,11 +73,37 @@ export default function OnCmpusForm({ user, setUser }) {
         setUser(e => ({ ...user, ucsdCollege: e.value }));
     }
 
+    const handleRoomTypeSelection = (e) => {
+        setSelectRoomType(e.value);
+        setUser(e => ({ ...user, roomType: e.value }));
+    }
+
     const handleRoommateBool = (e) => {
         setBoolRoommate(e.value);
         const roommateSearchValue = e.value === 'Yes';
         setUser(e => ({ ...user, roommateSearch: roommateSearchValue }));
     }
+
+    const handleRoommateNum = (e) => {
+        setSelectRoommateNum(e.value);
+        setUser(e => ({ ...user, numberofDesiredRoommates: e.value }));
+    }
+
+    const handleSuitemateNum = (e) => {
+        setSelectSuitemateNum(e.value);
+        setUser(e => ({ ...user, numberofDesiredSuitemates: e.value }));
+    }
+
+    const handleRoommatePref = (e) => {
+        setSelectRoommatePref(e.value);
+        setUser(e => ({ ...user, roommatePreference: e.value }));
+    }
+
+    const handleSuitematePref = (e) => {
+        setSelectSuitematePref(e.value);
+        setUser(e => ({ ...user, suitematePreference: e.value }));
+    }
+
 
     return (
         <>
@@ -88,11 +125,48 @@ export default function OnCmpusForm({ user, setUser }) {
 
                 <div className='input-container'>
                     <label>
-                        <span className="question">Are you looking for a roommate or housemates? <br /></span>
+                        <span className="question">Room Type<br /></span>
+                        <span className="answer"><Dropdown value={selectRoomType} onChange={handleRoomTypeSelection} options={['Double', 'Single', 'Triple', 'Mini Double']}
+                            placeholder="Select a Room Type" className="w-full md:w-14rem" /></span>
+                    </label>
+                </div>
+
+                <div className='input-container'>
+                    <label>
+                        <span className="question">Are you looking for a suitmates or roommate? <br /></span>
                         <span className="answer"><SelectButton value={BoolRoommate} onChange={handleRoommateBool} options={['Yes', 'No']} /></span>
                     </label>
                 </div>
 
+                <div className='input-container'>
+                    <label>
+                        <span className="question">Roommate Numbers<br /></span>
+                        <span className="answer"><Dropdown value={selectRoommateNum} onChange={handleRoommateNum} options={['1', '2', '3', '4', '5']}
+                            placeholder="Select desired Roommate Numbers" className="w-full md:w-14rem" /></span>
+                    </label>
+                </div>
+
+                <div className='input-container'>
+                    <label>
+                        <span className="question">Suitemate Numbers<br /></span>
+                        <span className="answer"><Dropdown value={selectSuitemateNum} onChange={handleSuitemateNum} options={['1', '2', '3', '4', '5', '6', '7', '8']}
+                            placeholder="Select desired Suitemate Numbers" className="w-full md:w-14rem" /></span>
+                    </label>
+                </div>
+
+                <div className='input-container'>
+                    <label>
+                        <span className="question">Roommate Preference<br /></span>
+                        <span className="answer"><InputTextarea value={selectRoommatePref} placeholder="Write desired Roommate Preference" onChange={handleRoommatePref} rows={5} cols={30} /></span>
+                    </label>
+                </div>
+
+                <div className='input-container'>
+                    <label>
+                        <span className="question">Suitemate Preference<br /></span>
+                        <span className="answer"><InputTextarea value={selectSuitematePref} placeholder="Write desired Suitemate Preference" onChange={handleSuitematePref} rows={5} cols={30} /></span>
+                    </label>
+                </div>
 
             </form>
         </>

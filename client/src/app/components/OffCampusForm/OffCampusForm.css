@@ -1,4 +1,5 @@
 form {
+    padding-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,101 +16,33 @@ label {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+
 }
 
 .input-container {
-    margin-bottom: 15px;
-}
-
-.sign-in-input {
-    color: #1E1E1E;
-    font-family: Roboto;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-
-    display: flex;
-    width: 266px;
-    height: 32px;
-    flex-direction: column;
-    justify-content: center;
-    flex-shrink: 0;
-
-    border: none;
-    outline: none;
-    border-bottom: 1px solid;
-
-}
-
-
-/*
-mimicking style of google's sign in button
-*/
-.sign-in-btn {
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: #f2f2f2;
-    border: none;
-    border-radius: 20px;
-    box-sizing: border-box;
-    color: #1f1f1f;
-    cursor: pointer;
-    font-family: 'Roboto', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    height: 40px;
-    letter-spacing: 0.25px;
-    outline: none;
-    overflow: hidden;
-    padding: 0 24px;
-    position: relative;
-    text-align: center;
-    transition: background-color .218s, border-color .218s, box-shadow .218s;
-    vertical-align: middle;
-    white-space: nowrap;
-    width: 300px;
-    height: 40px;
-    flex-shrink: 0;
-    border-radius: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
-    transition: background-color .218s, border-color .218s, box-shadow .218s;
-}
-
-.sign-in-btn:hover {
-    background-color: #e0e0e0;
-    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 2px 6px 2px rgba(60, 64, 67, .15);
-}
-
-.password-input-container {
-    display: flex;
-    align-items: center;
-    position: relative;
+    text-align: left;
     width: 100%;
 }
 
-.sign-in-input {
-    padding-right: 2.5rem;
+.question {
+    display: flex;
+    margin-bottom: 10px;
 }
 
-.visibility-btn {
-    position: absolute;
-    right: 0rem;
-    height: 100%;
+.answer {
+    display: flex;
+    margin-bottom: 15px;
 }
 
-.visibility-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
+.p-dropdown {
+    width: 100%;
+    text-align: left;
 }
 
-.feedback {
-    color: red;
-    text-align: center;
+.p-inputtext {
+    width: 100%;
+}
+
+.p-calendar {
+    width: 100%;
 }
