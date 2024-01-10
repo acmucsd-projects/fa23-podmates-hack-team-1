@@ -3,6 +3,8 @@ import styles from './page.module.css';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Navbar from './Navbar';
 export default function App() {
 const [user, setUser] = useState({});
 useEffect(() => {
@@ -19,6 +21,16 @@ useEffect(() => {
 }, [])
   return (
     <main>  
+      <Router>
+        <div>
+          <Navbar />
+          <Switch>
+            {/* <Route path="/" exact component={Home} />
+            <Route path="/likes" component={About} /> */} {/*home component and like component?*/}
+          </Switch>
+        </div>
+      </Router>
+      
         <h1>Home Page</h1>
         <p>this is a WIP!</p>
         <Link href='sign-in'>Sign In</Link> <br/>
