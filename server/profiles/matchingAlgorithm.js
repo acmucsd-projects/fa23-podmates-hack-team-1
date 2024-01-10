@@ -30,7 +30,7 @@ const matchingAlgorithm = (profile1, profile2) => {
     
     if(profile1.onCampus && profile2.onCampus) {
         if(profile1.onCampus.ucsdCollege == profile2.onCampus.ucsdCollege) {
-            if(!(profile1.onCampus.roomtype == 'single') && !(profile2.onCampus.roomtype == 'single') (profile1.onCampus.roomtype == profile2.onCampus.roomtype)) { //check !single
+            if(!(profile1.onCampus.roomtype == 'single') && !(profile2.onCampus.roomtype == 'single') && (profile1.onCampus.roomtype == profile2.onCampus.roomtype)) { //check !single
                 score += weights.roomtype;
             }
             if(profile1.apartmentPreferences.pets == profile2.apartmentPreferences.pets) {
