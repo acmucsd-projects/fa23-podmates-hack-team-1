@@ -1,0 +1,56 @@
+form {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+label {
+    color: #1E1E1E;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+}
+
+.input-container {
+    text-align: left;
+    width: 100%;
+}
+
+.question {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.answer {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.p-dropdown {
+    width: 100%;
+    text-align: left;
+}
+
+.p-inputtext {
+    width: 100%;
+}
+
+.oncampus-nav {
+    color: black;
+    font-weight: 600;
+    font-size: 16px;
+    background-color: transparent;
+    border: transparent;
+}
+
+.oncampus-nav:hover {
+    color: hotpink;
+}

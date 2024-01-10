@@ -18,11 +18,12 @@
     padding: 20px;
 }
 
-.sign-up-container {
+.sign-up-link {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
+
 a {
     color: black;
     font-weight: 600;
