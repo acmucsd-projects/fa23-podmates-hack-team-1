@@ -80,8 +80,7 @@ export default function SignUp() {
                 <div className="left-container">
                     <></>
                 </div>
-                <div className="right-container">
-                    
+                <div className="right-container">              
                     <div className='return-container'>
                         <Link className='sign-in' href='/sign-in'>{`<`} Back to Sign In </Link>
                     </div>

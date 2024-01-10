@@ -3,7 +3,8 @@ const apartmentPreferences = require('./apartmentPreferences');
 const lifestyle = require('./lifestyle');
 const onCampus = require('./onCampus');
 const offCampus = require('./offCampus');
-
+//forgot email --> deal with fetching email from database grab email and send link
+//deal with images and how to get/post request it/ test using console.log
 
 const UserProfileSchema = new mongoose.Schema(
     {
@@ -11,39 +12,49 @@ const UserProfileSchema = new mongoose.Schema(
         username: {
             type: String,
             required: true,
+            message: 'Please reenter your email you used to sign up previously as your username'
         },
         password: {
             type: String,
             required: true,
+            message: 'Please enter a new password to log into your account'
+            //deal with encryption here maybe? can make validator to deal with length of password and the characters
         },
         email: {
             type: String,
             unique: true,
-            required: false,
+            required: true,
         },
         name: {
             type: String,
-            required: false,
+            required: true,
         },
-        age: {
+        age: { //change to birthday :D
             type: Number,
-            required: false, 
+            required: true, 
+            validate: { //to ensure you input an age older than 17; how to deal with consent if you are minor?
+                validator: function(value) {
+                    return value >= 18
+                },
+                message: 'Age must be greater than 18'
+            }            
         },
-        image: {
+        image: { //make it so 6 max photos of themselves 
             type: String,
-            required: false,
+            required: false,    
         },
         pronouns: {
             type: String,
             required: false,
         },
-        gender: {
+        gender: { //add validator if you wanna show
             type: String, 
-            required: false,
+            required: true,
         },
         bio: {
             type: String,
             required: false,
+
         },
         apartmentPreferences:{
             type: [apartmentPreferences],
@@ -52,6 +63,15 @@ const UserProfileSchema = new mongoose.Schema(
         lifestyle:{
             type: [lifestyle],
             required: false,
+        },
+        location: {
+            type: mongoose.Schema.Types.Mixed, //allows for either on or off campus
+            validate: {
+                validator: function() {
+                    return !(this.location.onCampus && this.location.offCampus) && (this.location.onCampus || this.location.offCampus);
+                },
+                message: 'Please provide your current location for the school year. You can provide either on or off campus but not both.'
+            }
         },
         onCampus:{
             type: [onCampus],
