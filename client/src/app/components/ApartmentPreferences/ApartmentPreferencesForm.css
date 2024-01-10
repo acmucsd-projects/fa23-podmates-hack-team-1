@@ -28,3 +28,41 @@ label {
 li {
     color: black;
 }
+
+.left-container2 {
+    flex: 1;
+    background-color: white;
+    flex-direction: column;
+}
+
+.right-container2 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+.flex-container {
+    /* We first create a flex layout context */
+    display: flex;
+    
+    /* Then we define the flow direction 
+       and if we allow the items to wrap 
+     * Remember this is the same as:
+     * flex-direction: row;
+     * flex-wrap: wrap;
+     */
+    flex-flow: row wrap;
+    
+    /* Then we define how is distributed the remaining space */
+    justify-content: space-around;
+    
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+ 

@@ -1,11 +1,17 @@
 "use client"
 import ApartmentPreferencesForm from '../components/ApartmentPreferences'
+import "./sign-up.css"
 
 export default function SignUp() {
     return(
-        <div>
-            <p>Sign Up Here</p>
-            <ApartmentPreferencesForm/>
-        </div>
+        <div className="sign-up-container">
+                <div className="left-container">
+                    <></>
+                </div>
+                <div className="right-container">
+                    <ApartmentPreferencesForm/>
+                </div>
+            </div>
+        
     );
 }
