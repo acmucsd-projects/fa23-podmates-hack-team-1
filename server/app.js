@@ -23,6 +23,8 @@ app.use('/users', usersRouter); //I think this is how we are able to communicate
 app.use('/api', apiRouter); 
 //this is a middleware, basically like useEffect(), runs everytime a request is heard, it is mounted with app use
 
+const matchingAlgorithm = require('./profiles/matchingAlgorithm');
+
 const corsConfig = {
   credentials: true,
   origin: ['http://localhost:3000', 'https://oauth2.googleapis.com']
@@ -133,5 +135,41 @@ mongoose.connect(process.env.DB_URL, {
     useUnifiedTopology: true }).then(() => {
   console.log('Connected to MongoDB database');
 });
+
+const getProfilesFromDatabase = async () => {
+  try{
+    return await UserProfile.find({});
+  }
+  catch(error) {
+    console.error('Error receiving profiles from the database:', error);
+    return [];
+  }
+};
+//sort list to make sure no 0's 
+app.get('/api/matching', async (req, res) => {
+  try {
+    const profiles = await getProfilesFromDatabase();
+    const similarPreferencesResults = []; //similiar preferences
+    /**for loop iterates through all possible pairings of profiles*/
+    for(let i = 0; i < profiles.length - 1; i++) {
+      for(let j = i + 1; j< profiles.length; j++) {
+        const score = matchingAlgorithm(profiles[i], profiles[j]);
+
+        if(score == 0) {
+          continue;
+        }
+
+        similarPreferencesResults.push({ profile1: profiles[i], profile2: profiles[j], score });
+      }
+    }
+    similarPreferencesResults.sort((a,b) => b.score - a.score);
+    res.json({ similarPreferencesResults });
+  }
+  catch (error) {
+    console.error('Error during matching:', error);
+    res.status(500).send('Internal Server Error');
+  }
+})
+
 
 module.exports = app;
