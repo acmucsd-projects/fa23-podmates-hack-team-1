@@ -1,19 +1,30 @@
-form {
+.sign-up-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    max-width: 400px;
+    max-width: 700px;
     margin: 0 auto;
 }
-label {
-    color: #1E1E1E;
-    text-align: center;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
+
+.sign-up-label {
+    color: #4b5563;
+    font-size: 19px;
+    font-weight: 600;
     line-height: normal;
+}
+
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Adjust the width as needed */
+}
+
+.sign-up-form-container {
+    margin-left: 50px;
 }
 
 .p-buttonset {
@@ -25,19 +36,33 @@ label {
 }
 
 .p-calendar {
-    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 .p-checkbox {
     margin-right: 10px;
+    margin-top: 10px;
 }
 
-.input-container {
-    margin-bottom: 15px;
+
+.input-container, .gender-container, .pronouns-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px; /* Adjust as needed for spacing */
 }
 
-.red {
-    color: red;
+.birthday-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.sign-up-input, .password-input-container, .birthday-container, .gender-container, .pronouns-container {
+    width: 100%;
+}
+
+.sign-up-input {
+    margin-top: 10px;
 }
 
 
@@ -51,7 +76,7 @@ label {
     line-height: normal;
 
     display: flex;
-    width: 266px;
+    width: 300px;
     height: 32px;
     flex-direction: column;
     justify-content: center;
@@ -160,7 +185,7 @@ mimicking style of google's sign in button
 
 .visibility-btn {
     position: absolute;
-    right: 0rem;
+    right: 2rem;
     height: 100%;
 }
 
@@ -170,8 +195,24 @@ mimicking style of google's sign in button
     cursor: pointer;
 }
 
-
 .feedback {
     color: red;
-    text-align: center;
+    font-size: 14px;
+}
+.red {
+    color: red;
+}
+.border-red {
+    border-color: red;
+}
+.profile-next {
+    color: black;
+    font-weight: 600;
+    font-size: 18px;
+    background-color: transparent;
+    border: transparent;
+}
+
+.profile-next:hover {
+    color: hotpink;
 }

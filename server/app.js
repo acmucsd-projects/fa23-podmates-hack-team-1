@@ -12,6 +12,7 @@ const UserProfile = require('./profiles/userProfile');
 const apiRouter = require('./routes/apis');
 const app = express();
 const cors = require('cors');
+const multer = require('multer');
 
 const CustomStrategy = require('passport-custom');
 app.use(cors());
@@ -119,5 +120,6 @@ mongoose.connect(process.env.DB_URL, {
     useUnifiedTopology: true }).then(() => {
   console.log('Connected to MongoDB database');
 });
+
 
 module.exports = app;

@@ -32,3 +32,20 @@ a:hover {
     align-self:flex-start;
     /* padding-bottom: 30px; */
 }
+.movement-btn {
+    color: black;
+    font-weight: 600;
+    font-size: 18px;
+    padding-top: 15px;
+    background-color: transparent;
+    border: transparent;
+}
+
+.movement-btn:hover {
+    color: hotpink;
+}
+
+.feedback {
+    color: red;
+    font-size: 14px;
+}

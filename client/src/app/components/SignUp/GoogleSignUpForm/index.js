@@ -12,7 +12,7 @@ axios.defaults.withCredentials = true;
     2. if the email has been registered in our database, navigate to home
     3. if the email isn't a @ucsd.edu, we return the necessary feedback
 */
-export default function GoogleSignUpForm({ user, setUser, setIsGoogled }) {
+export default function GoogleSignUpForm({ user, setUser, setIsGoogled, nextStep }) {
   const [feedback, setFeedback] = useState('');
   const googleLogin = useGoogleLogin({
     onSuccess: tokenResponse => {
@@ -23,6 +23,7 @@ export default function GoogleSignUpForm({ user, setUser, setIsGoogled }) {
       var res = response.data.email;
       setUser({...user, email: res});
       setIsGoogled(true);
+      nextStep();
       setFeedback("Google Login Successful");
     })
     .catch((error) => {

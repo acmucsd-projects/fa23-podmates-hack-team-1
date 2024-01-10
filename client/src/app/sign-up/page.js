@@ -1,11 +1,17 @@
 "use client"
+import './SignUp.css'
 import { useEffect, useState } from 'react';
 import ProfileSignUpForm from '../components/SignUp/ProfileSignUpForm';
-import './SignUp.css'
+
 import SelectionPopUp from '../components/SignUp/SelectionPopUp';
 import Link from 'next/link';
 import GoogleSignUp from '../components/SignUp/GoogleSignUpForm/SignUp';
 import OnCmpusForm from '../components/OnCampusForm';
+import OffCmpusForm from '../components/OffCampusForm';
+import OffOrOnCampusForm from '../components/SignUp/OffOrOnCampusForm';
+import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
+import LifestyleForm from '../components/SignUp/LifestyleForm';
+        
 export default function SignUp() {
     const [user, setUser] = useState({
         password: '',
@@ -20,17 +26,32 @@ export default function SignUp() {
         bio: '',
         apartmentPreferences: {},
         lifestyle: {},
-        onCampus: {},
-        offCampus: {}
+        location: '',
+        onCampus: { 
+            buildingPref: '',
+            ucsdCollege: '',
+            roomType: '',
+            roommateType: ''
+        },
+        offCampus: {        
+            budget: null,
+            distanceFromCampus: null,
+            creatingGroup: null,
+            lookingForResident: null,
+            leaseStart: null,
+            leaseEnd: null
+        }
     });
 
     const [showPopUp, setShowPopUp] = useState(false);
     const [popUpType, setPopUpType] = useState('pronouns');
     const [currentStep, setCurrentStep] = useState(1);
     const [isGoogled, setIsGoogled] = useState(false);
+    const [isOnCampus, setIsOnCampus] = useState(false);
+    const [canSubmitForm, setCanSubmitForm] = useState(false); 
     
     const nextStep = () => {
-        if(currentStep != 4) {
+        if(currentStep != 6) {
             setCurrentStep(currentStep+1);
         }
     }
@@ -39,8 +60,13 @@ export default function SignUp() {
             setCurrentStep(currentStep-1);
         }
     }
-    console.log('Show pop up: ', showPopUp);
-    console.log('Pop up type: ', popUpType);
+
+    const handleSubmitForm = async (e) => {
+        e.preventDefault();
+        
+    }
+    console.log('current step: ', currentStep);
+
     console.log('user: ', user);
     return(
         <div>
@@ -55,21 +81,108 @@ export default function SignUp() {
                     <></>
                 </div>
                 <div className="right-container">
+                    
                     <div className='return-container'>
                         <Link className='sign-in' href='/sign-in'>{`<`} Back to Sign In </Link>
                     </div>
+                    
                     {
-                       isGoogled ?
+                        currentStep == 1 ?
+                        <>
+                            <GoogleSignUp 
+                                user={user} 
+                                setUser={setUser} 
+                                isGoogled={isGoogled} 
+                                setIsGoogled={setIsGoogled} 
+                                nextStep={nextStep}
+                            />
+                        </>
+                        :
+                        <>
+                        </>
+                    }
+                    {
+                       currentStep == 2 ?
                         <>
                             <h1>Create an account</h1>
-                            <ProfileSignUpForm user={user} setUser={setUser} setShowPopUp={setShowPopUp} setPopUpType={setPopUpType}/>
+                            <ProfileSignUpForm 
+                                user={user} 
+                                setUser={setUser} 
+                                setShowPopUp={setShowPopUp} 
+                                setPopUpType={setPopUpType} 
+                                currentStep={currentStep} 
+                                nextStep={nextStep} 
+                                previousStep={previousStep}
+                            />
                         </>
                        :
                        <>
-                        <GoogleSignUp user={user} setUser={setUser} isGoogled={isGoogled} setIsGoogled={setIsGoogled} />
-                       </> 
-
-                       
+                       </>   
+                    }
+                    {
+                       currentStep == 3 ?
+                        <>
+                            <h1>Choose your Housing Preferences</h1>
+                            <OffOrOnCampusForm
+                                user={user}
+                                setUser={setUser}
+                                setIsOnCampus={setIsOnCampus}
+                                nextStep={nextStep}
+                                previousStep={previousStep}
+                            />
+                        </>
+                       :
+                       <>
+                       </>   
+                    }
+                    {
+                        currentStep == 4 ?
+                            isOnCampus ? 
+                            <>
+                                <h1>Choose your Housing Preferences</h1>
+                                <OnCmpusForm
+                                    user={user} 
+                                    setUser={setUser} 
+                                    nextStep={nextStep} 
+                                    previousStep={previousStep}
+                                />
+                            </> 
+                            : 
+                            <>
+                                <h1>Choose your Housing Preferences</h1>
+                                <OffCmpusForm
+                                    user={user} 
+                                    setUser={setUser} 
+                                    nextStep={nextStep} 
+                                    previousStep={previousStep}
+                                />
+                            </>
+                        :
+                        <></>
+                    }
+                    {/* apartment preferences form should go here */}
+                    {
+                        currentStep == 5 ?
+                        <>
+                            <h1>Personalization</h1>
+                            <LifestyleForm
+                                user={user}
+                                setUser={setUser}
+                                previousStep={previousStep}
+                            />
+                        </>
+                        :
+                        <>
+                        </>
+                    }
+                    {/* lifestyle preferences form should go here */}
+                    {
+                        currentStep == 6 ?
+                        <>
+                        </>
+                        :
+                        <>
+                        </>
                     }
                 </div>
             </div>

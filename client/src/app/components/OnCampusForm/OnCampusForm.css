@@ -42,3 +42,15 @@ label {
 .p-inputtext {
     width: 100%;
 }
+
+.oncampus-nav {
+    color: black;
+    font-weight: 600;
+    font-size: 16px;
+    background-color: transparent;
+    border: transparent;
+}
+
+.oncampus-nav:hover {
+    color: hotpink;
+}
