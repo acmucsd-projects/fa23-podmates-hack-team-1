@@ -82,6 +82,18 @@ const UserProfileSchema = new mongoose.Schema(
             type:[offCampus],
             required: false,
         },
+        likesSent: {
+            type:[String],
+            required: false,
+        },
+        likesReceived: {
+            type:[String],
+            required: false
+        },
+        likesMutual: {
+            type:[String],
+            required: false
+        }
 
     }
 );

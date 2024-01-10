@@ -36,5 +36,6 @@ const onCampus = new mongoose.Schema(
         }
     }
 );
+//first check to see if both are looking for thing, then have weights and compare to see how similiar they are
 
 module.exports = onCampus;
