@@ -19,7 +19,7 @@ export default function ApartmentPreferencesForm() {
      * implement: everything :pepehands:
      * 
      */
-    const[user, setUser] = UseState({
+    const[user, setUser] = useState({
         password: '',
         email: '',
         name: '',
@@ -62,6 +62,84 @@ export default function ApartmentPreferencesForm() {
     const[extraOrSpecificRequirements, setExtraOrSpecificRequirements] = useState('');
     const[genderInclusiveHousing, setGenderInclusiveHousing] = useState('');
 
+    /** Handles user interaction and updates the current state of the element into current state variables*/
+    const handleNumberOfDesiredRoomatesSelection = (e) => {
+        setNumberOfDesiredRoomates(e.value); //e.target.value 
+        //setUser({});
+    }
+    const handlePets = (e) => {
+        setPets(e.value);
+        //setUser({});
+    }
+    const handlealcoholUsage = (e) => {
+        setAlcoholUsage(e.value);
+        //setUser({});
+    }
+    const handledrugUsage = (e) => {
+        setDrugUsage(e.value);
+        //setUser({});
+    }
+
+    const handleSmokingUsage = (e) => {
+        setSmokingUsage(e.value);
+        //setUser({});
+    }
+
+    const handleLBGTQFriendly = (e) => {
+        setLGBTQfriendlly(e.value);
+        //setUser({});
+    }
+
+    const handleAlcohol = (e) => {
+        setAlcoholUsage(e.value);
+        //setUser({})
+    }
+
+    const handleDrugs = (e) => {
+        setDrugUsage(e.value);
+        //setUser({})
+    }
+
+    const handleSmoking = (e) => {
+        setSmokingUsage(e.value);
+        //setUser({})
+    }
+
+    const handleLGBTQ = (e) => {
+        setLGBTQfriendlly(e.value);
+        //setUser({})
+    }
+
+    const handleReligion = (e) => {
+        setReligionfriendly(e.value);
+        //setUser({})
+    }
+
+    const handleSexualOrientation = (e) => {
+        setSexualOrientation(e.value);
+        //setUser({})
+    }
+
+    const handlePolitics = (e) => {
+        setPolitics(e.value);
+        //setUser({})
+    }
+
+    const handleSocialActiveness = (e) => {
+        setSocialActiveness(e.value);
+        //setUser({})
+    }
+
+    const handleExtras = (e) => {
+        setExtraOrSpecificRequirements(e.value); //e.target.value for text boxes 
+        //setUser({})
+    }
+
+    const handleGenderInclusive = (e) => {
+        setGenderInclusiveHousing(e.value);
+        //setUser({})
+    }
+
 
     //console.log(pets);
 
@@ -69,10 +147,10 @@ export default function ApartmentPreferencesForm() {
         //use input-container for css styling later
         <form className = 'flex-container'>
             {/* i fix later */}
-            {/* <div className ='input-container'>
+            { <div className ='input-container'>
                 <label>
                     Number Of Desired Roomates<br />
-                    <Drowpdown value ={user.apartmentPreferences.numberOfDesiredRoomates} onChange= {(e) => setUser({
+                    <Dropdown value ={user.apartmentPreferences.numberOfDesiredRoomates} onChange= {(e) => setUser({
                     ...user, apartmentPreferences: {...user.apartmentPreferences, numberOfDesiredRoomates: e.value}
                     })
                     } 
@@ -83,7 +161,7 @@ export default function ApartmentPreferencesForm() {
                     } 
                         placeholder= 'Select the desired number of roommates' className="w-full md:w-14rem" />
                 </label>
-            </div> */}
+            </div> }
             <div className = 'left-container2'>
                 <div className = 'input-container'>
                     <label>
