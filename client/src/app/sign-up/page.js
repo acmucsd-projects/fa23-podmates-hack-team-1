@@ -20,8 +20,7 @@ export default function SignUp() {
         name: '',
         // age in the user profile schema should be changed to birthday
         birthday: null,
-        // images in user profile schema should be changed to a list
-        image: [],
+        image: '',
         pronouns: {value: '', isVisible: false},
         gender: {value: '', isVisible: false},
         bio: '',
@@ -81,7 +80,7 @@ export default function SignUp() {
             username: user.email.replace('@ucsd.edu', ''),
             ...user
         }
-        
+
     }
     console.log('current step: ', currentStep);
 
