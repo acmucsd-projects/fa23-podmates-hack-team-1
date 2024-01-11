@@ -5,9 +5,10 @@ import { FileUpload } from 'primereact/fileupload';
 import { Rating } from 'primereact/rating';
 import { SelectButton } from "primereact/selectbutton";
 import { InputTextarea } from 'primereact/inputtextarea';
+import { Button } from "primereact/button";
 import './LifestyleForm.css';
 
-export default function LifestyleForm({ user, setUser, previousStep }) {
+export default function LifestyleForm({ user, setUser, previousStep, handleSubmitForm }) {
     const toast = useRef(null);
     const [rating, setRating] = useState(user.lifestyle.cleanliness);
     const [chronotype, setChronotype] = useState(user.lifestyle.Chronotype);
@@ -22,7 +23,7 @@ export default function LifestyleForm({ user, setUser, previousStep }) {
     const handleChronotype = (e) => {
         const newValue = e.value;
         setChronotype(newValue);
-        setUser({...user, lifestyle: {...user.lifestyle, cleanliness: newValue}});
+        setUser({...user, lifestyle: {...user.lifestyle, Chronotype: newValue}});
     }
     // thinking about excluding image uploading for now since we have to figure out how it works on the backend too
     const onUpload = () => {
@@ -56,6 +57,7 @@ export default function LifestyleForm({ user, setUser, previousStep }) {
                     </label>
                     <InputTextarea autoResize value={user.bio} onChange={(e) => setUser({...user, bio: e.target.value})} rows={5} cols={30} />
                 </div>
+                <Button label="Submit" onClick={handleSubmitForm}/>
                 <div>
                     <button type='button' onClick={previousStep} className='movement-btn'>{`<`} Back</button>
                 </div>

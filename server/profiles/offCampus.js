@@ -3,19 +3,19 @@ const mongoose = require('mongoose');
 const offCampus = new mongoose.Schema(
     {
         budget: {
-            type: Number,
+            type: String,
             required: false,
         },
         distanceFromCampus: {
-            type: Number,
+            type: String,
             required: false,
         },
         creatingGroup: {
-            type: Boolean, 
+            type: String, 
             required: false,
         },
         lookingForResident: {
-            type: Boolean,
+            type: String,
             required: false, 
         },
         leaseStart: {

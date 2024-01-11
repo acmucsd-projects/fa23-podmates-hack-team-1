@@ -7,7 +7,7 @@ const lifestyle = new mongoose.Schema (
             required: false,
         },
         cleanliness: {
-            type: String,
+            type: Number,
             required: false,
         },
     }

@@ -3,34 +3,34 @@ const mongoose = require('mongoose');
 const apartmentPreferences = new mongoose.Schema(
     {
         numberOfDesiredRoommates: {
-            type: Number,
+            type: String,
             required: true,
         },
         pets: {
-            type: Boolean,
+            type: String,
             required: true,
         },
         alcoholUsage: {
-            type: Boolean,
+            type: String,
             required: true,
         },
         drugUsage: {
-            type: Boolean, 
+            type: String, 
             required: true,
         },
         smokingUsage: {
-            type: Boolean, 
+            type: String, 
+            required: true,
+        },        
+        genderInclusiveHousing: {
+            type: String,
             required: true,
         },
         LBGTQfriendly: {
-            type: Boolean,
-            required: false,
-        },
-        religion: {
             type: String,
             required: false,
         },
-        sexualOrientation: {
+        religion: {
             type: String,
             required: false,
         },
@@ -41,16 +41,7 @@ const apartmentPreferences = new mongoose.Schema(
         socialActiveness: { 
             type: String,
             required: false,
-        },
-        extraOrSpecificRequirements: {
-            type: String,
-            required: false,
-        },
-        genderInclusiveHousing: {
-            type: Boolean,
-            required: false,
-        },
-
+        }
 
     }
 );

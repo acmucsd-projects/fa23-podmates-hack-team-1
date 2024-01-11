@@ -29,15 +29,18 @@ const UserProfileSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        age: { //change to birthday :D
-            type: Number,
+        birthday: { //change to birthday :D
+            type: Date,
             required: true, 
-            validate: { //to ensure you input an age older than 17; how to deal with consent if you are minor?
-                validator: function(value) {
-                    return value >= 18
-                },
-                message: 'Age must be greater than 18'
-            }            
+
+            // frontend already checks to make sure they're of age upon account creation
+
+            // validate: { //to ensure you input an age older than 17; how to deal with consent if you are minor?
+            //     validator: function(value) {
+            //         return value >= 18
+            //     },
+            //     message: 'Age must be greater than 18'
+            // }            
         },
         image: { //make it so 6 max photos of themselves 
             type: String,
@@ -65,13 +68,8 @@ const UserProfileSchema = new mongoose.Schema(
             required: false,
         },
         location: {
-            type: mongoose.Schema.Types.Mixed, //allows for either on or off campus
-            validate: {
-                validator: function() {
-                    return !(this.location.onCampus && this.location.offCampus) && (this.location.onCampus || this.location.offCampus);
-                },
-                message: 'Please provide your current location for the school year. You can provide either on or off campus but not both.'
-            }
+            type: String,
+            required: true,
         },
         onCampus:{
             type: [onCampus],
@@ -80,7 +78,7 @@ const UserProfileSchema = new mongoose.Schema(
         offCampus: {
             type:[offCampus],
             required: false,
-        },
+        }
 
     }
 );

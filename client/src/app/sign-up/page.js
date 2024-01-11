@@ -6,11 +6,12 @@ import ProfileSignUpForm from '../components/SignUp/ProfileSignUpForm';
 import SelectionPopUp from '../components/SignUp/SelectionPopUp';
 import Link from 'next/link';
 import GoogleSignUp from '../components/SignUp/GoogleSignUpForm/SignUp';
-import OnCmpusForm from '../components/OnCampusForm';
-import OffCmpusForm from '../components/OffCampusForm';
+import OnCmpusForm from '../components/SignUp/OnCampusForm';
+import OffCmpusForm from '../components/SignUp/OffCampusForm';
 import OffOrOnCampusForm from '../components/SignUp/OffOrOnCampusForm';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import LifestyleForm from '../components/SignUp/LifestyleForm';
+import ApartmentPreferencesForm from '../components/SignUp/ApartmentPreferences';
         
 export default function SignUp() {
     const [user, setUser] = useState({
@@ -24,8 +25,19 @@ export default function SignUp() {
         pronouns: {value: '', isVisible: false},
         gender: {value: '', isVisible: false},
         bio: '',
-        apartmentPreferences: {},
-        lifestyle: {},
+        apartmentPreferences: {
+            numberOfDesiredRoommates: '',
+            pets: '',
+            alcoholUsage: '',
+            drugUsage: '',
+            smokingUsage: '',        
+            genderInclusiveHousing: '',
+            LBGTQfriendly: '',
+            religion: '',
+            politics: '',
+            socialActiveness: ''
+        },
+        lifestyle: {cleanliness: null, chronoType: ''},
         location: '',
         onCampus: { 
             buildingPref: '',
@@ -63,6 +75,12 @@ export default function SignUp() {
 
     const handleSubmitForm = async (e) => {
         e.preventDefault();
+        // post user call goes here
+        console.log('user created!');
+        const userData = {
+            username: user.email.replace('@ucsd.edu', ''),
+            ...user
+        }
         
     }
     console.log('current step: ', currentStep);
@@ -163,11 +181,12 @@ export default function SignUp() {
                     {
                         currentStep == 5 ?
                         <>
-                            <h1>Personalization</h1>
-                            <LifestyleForm
+                            <h1>Housing Quirks</h1>
+                            <ApartmentPreferencesForm
                                 user={user}
                                 setUser={setUser}
                                 previousStep={previousStep}
+                                nextStep={nextStep} 
                             />
                         </>
                         :
@@ -178,6 +197,13 @@ export default function SignUp() {
                     {
                         currentStep == 6 ?
                         <>
+                            <h1>Personalization</h1>
+                            <LifestyleForm
+                                user={user}
+                                setUser={setUser}
+                                previousStep={previousStep}
+                                handleSubmitForm={handleSubmitForm}
+                            />
                         </>
                         :
                         <>

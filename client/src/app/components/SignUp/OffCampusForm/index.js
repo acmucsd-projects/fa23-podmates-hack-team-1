@@ -45,7 +45,7 @@ export default function OffCmpusForm({ user, setUser, previousStep, nextStep}) {
     const handleLookingForResident = (e) => {
         const newValue = e.value;
         setLookingForResident(newValue);
-        setResidentFeedback(newValue ? null : '* Decision on looking for a member must be made.');
+        setResidentFeedback(newValue ? null : '* Decision on looking for a housemate type must be made.');
         setUser(user => ({ ...user, offCampus: {...user.offCampus, lookingForResident: newValue }}))
     }
     
@@ -64,7 +64,7 @@ export default function OffCmpusForm({ user, setUser, previousStep, nextStep}) {
     }    
 
     const isValid = () => {
-        if(user.offCampus.budget && user.offCampus.distanceFromCampus && user.offCampus.creatingGroup && user.offCampus.lookingForResident) {
+        if(user.offCampus.budget && user.offCampus.distanceFromCampus && selectGroupType && user.offCampus.lookingForResident) {
             return true;
         }
         return false;
