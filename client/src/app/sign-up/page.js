@@ -12,7 +12,8 @@ import OffOrOnCampusForm from '../components/SignUp/OffOrOnCampusForm';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import LifestyleForm from '../components/SignUp/LifestyleForm';
 import ApartmentPreferencesForm from '../components/SignUp/ApartmentPreferences';
-        
+import axios from 'axios';
+
 export default function SignUp() {
     const [user, setUser] = useState({
         password: '',
@@ -75,7 +76,15 @@ export default function SignUp() {
     const handleSubmitForm = async (e) => {
         e.preventDefault();
         // post user call goes here
-        console.log('user created!');
+        axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http:localhost:3000';
+        axios.post('http://localhost:5000/regUser',{withCredentials: false},user)
+        .then((response) => {
+            console.log(response);
+            console.log('user created!');
+        })
+        .catch((error) => {
+            console.log(error);
+        })
         const userData = {
             username: user.email.replace('@ucsd.edu', ''),
             ...user

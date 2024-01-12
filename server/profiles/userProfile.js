@@ -8,12 +8,6 @@ const offCampus = require('./offCampus');
 
 const UserProfileSchema = new mongoose.Schema(
     {
-        //add user/password
-        username: {
-            type: String,
-            required: true,
-            message: 'Please reenter your email you used to sign up previously as your username'
-        },
         password: {
             type: String,
             required: true,
@@ -47,11 +41,11 @@ const UserProfileSchema = new mongoose.Schema(
             required: false,    
         },
         pronouns: {
-            type: String,
+            type: Object,
             required: false,
         },
         gender: { //add validator if you wanna show
-            type: String, 
+            type: Object, 
             required: true,
         },
         bio: {

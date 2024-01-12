@@ -104,6 +104,20 @@ app.get('/isAuth', checkAuthentication, (req,res) => {
 app.get('/', (req, res) => {
   res.send('');
 })
+
+app.post('/regUser', cors(corsConfig), (req, res) => {
+  var newUser = new UserProfile(req.body);
+  newUser.save()
+  .then(() => {
+    res.status(200);
+    console.log(newUser);
+    res.redirect('/');
+  })
+  .catch((error) => {
+    res.status(404);
+    res.send(error);
+  })
+});
 function checkAuthentication(req,res){
   if(req.isAuthenticated()){
       res.send(req.user);
