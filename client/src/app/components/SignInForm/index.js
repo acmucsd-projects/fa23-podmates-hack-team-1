@@ -31,7 +31,7 @@ export default function SignInForm() {
         }
         }, {withCredentials: true})
         .then((response) => {
-            setFeedback('login sucessful');
+            setFeedback('login successful');
             console.log(response);
             push('/');
         })

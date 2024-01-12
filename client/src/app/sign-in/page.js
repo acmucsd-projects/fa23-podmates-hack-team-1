@@ -12,7 +12,7 @@ export default function SignIn() {
                 <></>
             </div>
             <div className="right-container">
-                <h1>Insert Logo Here</h1>
+                <h1>Welcome to Door Hinge</h1>
                 <SignInForm/>
                 <Link className='forgot-password' href='/forgot-password'>Forgot Password?</Link>
                 <div className="sign-up-link">

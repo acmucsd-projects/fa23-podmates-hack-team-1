@@ -1,0 +1,22 @@
+.button-link {
+    text-decoration: none;
+    color: white;
+  }
+  .button-link:hover {
+    color: white;
+  }
+  
+  .home-container {
+    display: flex;
+    align-items: center; 
+  }
+  
+  .left {
+    flex: 1; 
+    text-align: center; 
+  }
+  
+  .right {
+    flex: 1; 
+    text-align: left;
+  }
